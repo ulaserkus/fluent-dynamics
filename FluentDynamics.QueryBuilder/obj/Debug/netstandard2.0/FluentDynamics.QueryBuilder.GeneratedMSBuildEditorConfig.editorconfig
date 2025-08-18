@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = FluentDynamics.QueryBuilder
+build_property.ProjectDir = /Users/mac0/Desktop/fluent-dynamics/FluentDynamics.QueryBuilder/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
