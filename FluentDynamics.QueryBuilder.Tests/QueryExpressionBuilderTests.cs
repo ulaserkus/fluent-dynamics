@@ -85,7 +85,7 @@ namespace FluentDynamics.QueryBuilder.Tests
         public void Clone_ProducesIndependentCopy()
         {
             var original = Query.For("account").Select("name");
-            var clone = original.Clone(); // extension method
+            var clone = original.DeepClone(); // extension method
             clone.Select("accountnumber");
 
             var oQuery = original.ToQueryExpression();

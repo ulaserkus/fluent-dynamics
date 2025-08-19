@@ -169,7 +169,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>Collection of entities for the specified page</returns>
         public EntityCollection RetrieveMultiple(IOrganizationService service, int pageNumber, int pageSize)
         {
-            var query = ((QueryExpression)_query).Clone();
+            var query = ((QueryExpression)_query).DeepClone();
             query.PageInfo = new PagingInfo
             {
                 PageNumber = pageNumber,
@@ -190,7 +190,7 @@ namespace FluentDynamics.QueryBuilder
             int pageSize = 5000;
             string pagingCookie = null;
             bool moreRecords;
-            var query = _query.Clone();
+            var query = _query.DeepClone();
 
             do
             {

@@ -19,11 +19,11 @@ namespace FluentDynamics.QueryBuilder
         /// </summary>
         /// <param name="builder">The query builder to clone</param>
         /// <returns>A new instance with the same query configuration</returns>
-        public static QueryExpressionBuilder Clone(this QueryExpressionBuilder builder)
+        public static QueryExpressionBuilder DeepClone(this QueryExpressionBuilder builder)
         {
             return new QueryExpressionBuilder(builder._query.EntityName)
             {
-                _query = (QueryExpression)builder._query.Clone()
+                _query = (QueryExpression)builder._query.DeepClone()
             };
         }
 
@@ -218,11 +218,11 @@ namespace FluentDynamics.QueryBuilder
         }
 
         /// <summary>
-        /// Creates a deep clone of a QueryExpression
+        /// Creates a shallow clone of a QueryExpression
         /// </summary>
         /// <param name="queryExpression">The query expression to clone</param>
         /// <returns>A new instance with the same configuration</returns>
-        internal static QueryExpression Clone(this QueryExpression queryExpression)
+        public static QueryExpression ShallowClone(this QueryExpression queryExpression)
         {
             var query = new QueryExpression
             {
