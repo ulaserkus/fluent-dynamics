@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<PackageId>FluentDynamics.QueryBuilder</PackageId>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Authors>ulaserkus</Authors>
 		<Company></Company>
 		<Description>A fluent API for building Microsoft Dynamics 365/Dataverse queries with a clean, chainable syntax.</Description>
