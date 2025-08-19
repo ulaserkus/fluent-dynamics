@@ -283,7 +283,7 @@ namespace FluentDynamics.QueryBuilder
         /// <param name="service">The organization service</param>
         /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
         /// <returns>Task returning collection of all entities from all pages</returns>
-        public Task<EntityCollection> RetrieveMultipleAllPagesAsync(IOrganizationService service, CancellationToken cancellationToken)
+        public Task<EntityCollection> RetrieveMultipleAllPagesAsync(IOrganizationService service, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => RetrieveMultipleAllPages(service), cancellationToken);
         }
