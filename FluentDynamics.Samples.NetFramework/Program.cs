@@ -20,42 +20,48 @@ namespace FluentDynamics.Samples.NetFramework
 
             // Basic query to retrieve accounts with specific fields and conditions
             var basicQuery = Query.For("account")
-                .Select("name", "accountnumber", "telephone1")
-                .Where("statecode", ConditionOperator.Equal, 0)
-                .OrderBy("name")
-                .Top(10);
+                 .Select("name", "accountnumber", "telephone1")
+                 .Where(f => f
+                     .Condition("statecode", ConditionOperator.Equal, 0)
+                 )
+                 .OrderBy("name")
+                 .Top(10);
 
             var accountResults = await basicQuery.RetrieveMultiple(service).ToListAsync();
 
             //Complex filtering with nested conditions
             Guid accountId = Guid.NewGuid(); // Replace with an actual account ID
             var complexQuery = Query.For("contact")
-                .Select("firstname", "lastname", "emailaddress1")
-                .Where("statecode", ConditionOperator.Equal, 0)
-                .And(q =>
-                {
-                    q.Where("createdon", ConditionOperator.LastXDays, 30);
-                    q.Where("emailaddress1", ConditionOperator.NotNull);
-                })
-                .Or(q =>
-                {
-                    q.Where("parentcustomerid", ConditionOperator.Equal, accountId);
-                    q.Where("address1_city", ConditionOperator.Equal, "Seattle");
-                })
-                .OrderBy("lastname")
-                .OrderBy("firstname");
+            .Select("firstname", "lastname", "emailaddress1")
+                    .Where(f => f
+                        .Condition("statecode", ConditionOperator.Equal, 0)
+                        .And(fa => fa
+                            .Condition("createdon", ConditionOperator.LastXDays, 30)
+                            .Condition("emailaddress1", ConditionOperator.NotNull)
+                        )
+                        .Or(fo => fo
+                            .Condition("parentcustomerid", ConditionOperator.Equal, accountId)
+                            .Condition("address1_city", ConditionOperator.Equal, "Seattle")
+                        )
+                    )
+                    .OrderBy("lastname")
+                    .OrderBy("firstname");
 
             var contactResults = await complexQuery.RetrieveMultiple(service).ToListAsync();
 
             // Joining multiple entities with specific conditions and aliases
             var joiningQueryquery = Query.For("opportunity")
                 .Select("name", "estimatedvalue", "closeprobability")
-                .Where("statecode", ConditionOperator.Equal, 0)
+                .Where(f => f
+                    .Condition("statecode", ConditionOperator.Equal, 0)
+                )
                 .Link("account", "customerid", "accountid", JoinOperator.Inner, link =>
                 {
                     link.Select("name", "accountnumber")
                         .As("account")
-                        .Where("statecode", ConditionOperator.Equal, 0);
+                        .Where(f => f
+                            .Condition("statecode", ConditionOperator.Equal, 0)
+                        );
                 })
                 .Link("contact", "customerid", "contactid", JoinOperator.LeftOuter, link =>
                 {

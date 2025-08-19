@@ -90,55 +90,16 @@ namespace FluentDynamics.QueryBuilder
         }
 
         /// <summary>
-        /// Adds a filter condition to the query
+        /// Adds a filter group to the query using a fluent <see cref="FilterBuilder"/> configuration.
+        /// Use this method to define complex filter logic (AND/OR/conditions) for the main query criteria.
         /// </summary>
-        /// <param name="attribute">The attribute to filter on</param>
-        /// <param name="op">The comparison operator</param>
-        /// <param name="value">The value to compare against</param>
-        /// <returns>The builder instance for method chaining</returns>
-        public QueryExpressionBuilder Where(string attribute, ConditionOperator op, object value = default)
+        /// <param name="filterConfig">An action to configure the filter group via <see cref="FilterBuilder"/>.</param>
+        /// <returns>The builder instance for method chaining.</returns>
+        public QueryExpressionBuilder Where(Action<FilterBuilder> filterConfig)
         {
-            if (value is null)
-                _query.Criteria.AddCondition(attribute, op);
-            else
-                _query.Criteria.AddCondition(attribute, op, value);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a nested AND filter group
-        /// </summary>
-        /// <param name="nested">Action to configure the nested filter group</param>
-        /// <param name="filterHint">Optional hint for the filter</param>
-        /// <returns>The builder instance for method chaining</returns>
-        public QueryExpressionBuilder And(Action<QueryExpressionBuilder> nested, string filterHint = "")
-        {
-            var filter = new FilterExpression(LogicalOperator.And);
-            filter.FilterHint = filterHint;
-            var nestedBuilder = new QueryExpressionBuilder(_query.EntityName);
-            nested(nestedBuilder);
-            foreach (var cond in nestedBuilder._query.Criteria.Conditions)
-                filter.Conditions.Add(cond);
-            _query.Criteria.AddFilter(filter);
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a nested OR filter group
-        /// </summary>
-        /// <param name="nested">Action to configure the nested filter group</param>
-        /// <param name="filterHint">Optional hint for the filter</param>
-        /// <returns>The builder instance for method chaining</returns>
-        public QueryExpressionBuilder Or(Action<QueryExpressionBuilder> nested, string filterHint = "")
-        {
-            var filter = new FilterExpression(LogicalOperator.Or);
-            filter.FilterHint = filterHint;
-            var nestedBuilder = new QueryExpressionBuilder(_query.EntityName);
-            nested(nestedBuilder);
-            foreach (var cond in nestedBuilder._query.Criteria.Conditions)
-                filter.Conditions.Add(cond);
-            _query.Criteria.AddFilter(filter);
+            var builder = new FilterBuilder(LogicalOperator.And); 
+            filterConfig(builder);
+            _query.Criteria = builder.ToExpression();
             return this;
         }
 

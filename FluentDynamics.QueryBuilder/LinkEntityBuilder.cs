@@ -81,12 +81,27 @@ namespace FluentDynamics.QueryBuilder
         /// <param name="op">The comparison operator</param>
         /// <param name="value">The value to compare against</param>
         /// <returns>The builder instance for method chaining</returns>
-        public LinkEntityBuilder Where(string attribute, ConditionOperator op, object value = default)
+        public LinkEntityBuilder Condition(string attribute, ConditionOperator op, object value = default)
         {
             if (value is null)
                 _linkEntity.LinkCriteria.AddCondition(attribute, op);
             else
                 _linkEntity.LinkCriteria.AddCondition(attribute, op, value);
+            return this;
+        }
+
+
+        /// <summary>
+        /// Adds a filter group to the query using a fluent <see cref="FilterBuilder"/> configuration.
+        /// Use this method to define complex filter logic (AND/OR/conditions) for the main query criteria.
+        /// </summary>
+        /// <param name="filterConfig">An action to configure the filter group via <see cref="FilterBuilder"/>.</param>
+        /// <returns>The builder instance for method chaining.</returns>
+        public LinkEntityBuilder Where(Action<FilterBuilder> filterConfig)
+        {
+            var builder = new FilterBuilder(LogicalOperator.And);
+            filterConfig(builder);
+            _linkEntity.LinkCriteria = builder.ToExpression();
             return this;
         }
 
@@ -110,42 +125,6 @@ namespace FluentDynamics.QueryBuilder
             var builder = new LinkEntityBuilder(link);
             linkBuilder(builder);
             _linkEntity.LinkEntities.Add(link);
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a nested AND filter group to the linked entity
-        /// </summary>
-        /// <param name="nested">Action to configure the nested filter group</param>
-        /// <param name="filterHint">Optional hint for the filter to influence query optimization</param>
-        /// <returns>The builder instance for method chaining</returns>
-        public LinkEntityBuilder And(Action<LinkEntityBuilder> nested, string filterHint = "")
-        {
-            var filter = new FilterExpression(LogicalOperator.And);
-            filter.FilterHint = filterHint;
-            var nestedBuilder = new LinkEntityBuilder(_linkEntity);
-            nested(nestedBuilder);
-            foreach (var cond in nestedBuilder._linkEntity.LinkCriteria.Conditions)
-                filter.Conditions.Add(cond);
-            _linkEntity.LinkCriteria.AddFilter(filter);
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a nested OR filter group to the linked entity
-        /// </summary>
-        /// <param name="nested">Action to configure the nested filter group</param>
-        /// <param name="filterHint">Optional hint for the filter to influence query optimization</param>
-        /// <returns>The builder instance for method chaining</returns>
-        public LinkEntityBuilder Or(Action<LinkEntityBuilder> nested, string filterHint = "")
-        {
-            var filter = new FilterExpression(LogicalOperator.Or);
-            filter.FilterHint = filterHint;
-            var nestedBuilder = new LinkEntityBuilder(_linkEntity);
-            nested(nestedBuilder);
-            foreach (var cond in nestedBuilder._linkEntity.LinkCriteria.Conditions)
-                filter.Conditions.Add(cond);
-            _linkEntity.LinkCriteria.AddFilter(filter);
             return this;
         }
     }
