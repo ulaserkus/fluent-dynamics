@@ -1,11 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<PackageId>FluentDynamics.QueryBuilder</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>ulaserkus</Authors>
+		<Company></Company>
+		<Description>A fluent API for building Microsoft Dynamics 365/Dataverse queries with a clean, chainable syntax.</Description>
+		<PackageTags>dynamics365;dataverse;powerplatform;crm;queryexpression;fluent</PackageTags>
+		<PackageProjectUrl>https://github.com/ulaserkus/fluent-dynamics</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ulaserkus/fluent-dynamics</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
 </Project>
