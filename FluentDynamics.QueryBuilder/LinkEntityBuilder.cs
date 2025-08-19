@@ -75,23 +75,6 @@ namespace FluentDynamics.QueryBuilder
         }
 
         /// <summary>
-        /// Adds a filter condition to the linked entity
-        /// </summary>
-        /// <param name="attribute">The attribute to filter on</param>
-        /// <param name="op">The comparison operator</param>
-        /// <param name="value">The value to compare against</param>
-        /// <returns>The builder instance for method chaining</returns>
-        public LinkEntityBuilder Condition(string attribute, ConditionOperator op, object value = default)
-        {
-            if (value is null)
-                _linkEntity.LinkCriteria.AddCondition(attribute, op);
-            else
-                _linkEntity.LinkCriteria.AddCondition(attribute, op, value);
-            return this;
-        }
-
-
-        /// <summary>
         /// Adds a filter group to the query using a fluent <see cref="FilterBuilder"/> configuration.
         /// Use this method to define complex filter logic (AND/OR/conditions) for the main query criteria.
         /// </summary>
