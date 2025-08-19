@@ -1,10 +1,7 @@
-﻿using FluentDynamics.QueryBuilder;
-using Microsoft.Crm.Sdk.Messages;
+﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Moq;
-using System.Linq;
-using System.Threading;
 using Xunit;
 
 namespace FluentDynamics.QueryBuilder.Tests
@@ -42,7 +39,6 @@ namespace FluentDynamics.QueryBuilder.Tests
                                 );
 
             var query = builder.ToQueryExpression();
-            // Root filter should contain 1 condition + 1 nested OR filter
             Assert.Equal(1, query.Criteria.Conditions.Count);
             Assert.Single(query.Criteria.Filters);
             var orFilter = query.Criteria.Filters.First();
@@ -104,7 +100,6 @@ namespace FluentDynamics.QueryBuilder.Tests
         {
             var serviceMock = new Mock<IOrganizationService>();
 
-            // İlk sayfa: 2 kayıt, daha var
             serviceMock.SetupSequence(s => s.RetrieveMultiple(It.IsAny<QueryBase>()))
                 .Returns(new EntityCollection
                 {
@@ -112,7 +107,6 @@ namespace FluentDynamics.QueryBuilder.Tests
                     MoreRecords = true,
                     PagingCookie = "cookie1"
                 })
-                // İkinci sayfa: 1 kayıt, bitiş
                 .Returns(new EntityCollection
                 {
                     Entities = { new Entity("account") },
@@ -128,10 +122,8 @@ namespace FluentDynamics.QueryBuilder.Tests
         [Fact]
         public void ToFetchExpression_ProducesFetchXml()
         {
-            // service.Execute çağrısını test etmek için Moq
             var serviceMock = new Mock<IOrganizationService>();
 
-            // QueryExpressionToFetchXmlRequest -> QueryExpressionToFetchXmlResponse
             serviceMock.Setup(s => s.Execute(It.IsAny<QueryExpressionToFetchXmlRequest>()))
                 .Returns<OrganizationRequest>(req =>
                 {

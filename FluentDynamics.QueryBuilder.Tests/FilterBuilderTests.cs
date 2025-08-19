@@ -1,5 +1,4 @@
-﻿using FluentDynamics.QueryBuilder;
-using Microsoft.Xrm.Sdk.Query;
+﻿using Microsoft.Xrm.Sdk.Query;
 using Xunit;
 
 namespace FluentDynamics.QueryBuilder.Tests

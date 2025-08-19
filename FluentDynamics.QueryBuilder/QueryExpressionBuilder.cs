@@ -33,6 +33,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>The builder instance for method chaining</returns>
         public QueryExpressionBuilder Select(params string[] attributes)
         {
+            _query.ColumnSet = new ColumnSet();
             _query.ColumnSet.AddColumns(attributes);
             return this;
         }
@@ -97,7 +98,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>The builder instance for method chaining.</returns>
         public QueryExpressionBuilder Where(Action<FilterBuilder> filterConfig)
         {
-            var builder = new FilterBuilder(LogicalOperator.And); 
+            var builder = new FilterBuilder(LogicalOperator.And);
             filterConfig(builder);
             _query.Criteria = builder.ToExpression();
             return this;

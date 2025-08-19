@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using FluentDynamics.QueryBuilder;
-using Microsoft.Xrm.Sdk.Query;
+﻿using Microsoft.Xrm.Sdk.Query;
 using Xunit;
 
 namespace FluentDynamics.QueryBuilder.Tests
@@ -31,7 +29,7 @@ namespace FluentDynamics.QueryBuilder.Tests
 
             var link = query.ToQueryExpression().LinkEntities.Single();
             Assert.True(link.Columns.AllColumns);
-            Assert.Empty(link.Columns.Columns); // AllColumns true iken spesifik liste genelde boş olur
+            Assert.Empty(link.Columns.Columns); 
         }
 
         [Fact]
