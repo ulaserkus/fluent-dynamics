@@ -4,6 +4,10 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 
 [![NuGet](https://img.shields.io/nuget/v/FluentDynamics.QueryBuilder.svg)](https://www.nuget.org/packages/FluentDynamics.QueryBuilder/)
 [![License](https://img.shields.io/github/license/ulaserkus/fluent-dynamics)](LICENSE)
+![Line Coverage](https://img.shields.io/badge/line%20coverage-76.21%25-yellow)
+![Branch Coverage](https://img.shields.io/badge/branch%20coverage-61.36%25-orange)
+![Method Coverage](https://img.shields.io/badge/method%20coverage-61.11%25-orange)
+![Tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)
 
 ## Features
 
@@ -201,6 +205,25 @@ Configures join/link entities:
 - `Select(selector)` - Projects entities to new form
 - `TryGet<T>(attributeName, defaultValue)` - Safely gets attribute value
 - `Clone()` - Deep clone of a query builder instance
+---
+
+### Module Coverage
+| Module | Line | Branch | Method |
+|--------|------|--------|--------|
+| FluentDynamics.QueryBuilder | 76.21% | 61.36% | 61.11% |
+
+### Overall Coverage
+| Metric | Line | Branch | Method |
+|--------|------|--------|--------|
+| Total | 76.21% | 61.36% | 61.11% |
+| Average | 76.2% | 61.36% | 61.11% |
+
+### Test Summary
+- Total Tests: 40
+- Failed: 0
+- Succeeded: 40
+- Skipped: 0
+- Duration: 2.5s
 ---
 
 ## License
