@@ -4,5 +4,6 @@
 
 /.vs
 /FluentDynamics.QueryBuilder/bin/Debug/netstandard2.0
+/FluentDynamics.QueryBuilder/obj
 /FluentDynamics.Samples/bin/Debug
 /FluentDynamics.Samples/obj

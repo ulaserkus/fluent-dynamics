@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FluentDynamics.QueryBuilder")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af02d676d2fa536b8e85a67f5ae559d8f9608184")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f262f443ba62046a81817662605bda28a1611397")]
 [assembly: System.Reflection.AssemblyProductAttribute("FluentDynamics.QueryBuilder")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FluentDynamics.QueryBuilder")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
