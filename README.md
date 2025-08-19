@@ -204,7 +204,7 @@ Configures join/link entities:
 - `Where(predicate)` - Filters entities
 - `Select(selector)` - Projects entities to new form
 - `TryGet<T>(attributeName, defaultValue)` - Safely gets attribute value
-- `Clone()` - Deep clone of a query builder instance
+- `DeepClone()` - Deep clone of a query builder instance
 ---
 
 ### Module Coverage
