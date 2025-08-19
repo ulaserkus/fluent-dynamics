@@ -7,3 +7,6 @@
 /FluentDynamics.QueryBuilder/obj
 /FluentDynamics.Samples/bin/Debug
 /FluentDynamics.Samples/obj
+/FluentDynamics.Samples.NetFramework/bin/Debug
+/FluentDynamics.Samples.NetFramework/obj/Debug
+/packages
