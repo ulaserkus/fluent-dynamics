@@ -96,9 +96,13 @@ namespace FluentDynamics.QueryBuilder
         /// <param name="op">The comparison operator</param>
         /// <param name="value">The value to compare against</param>
         /// <returns>The builder instance for method chaining</returns>
-        public QueryExpressionBuilder Where(string attribute, ConditionOperator op, object value)
+        public QueryExpressionBuilder Where(string attribute, ConditionOperator op, object value = default)
         {
-            _query.Criteria.AddCondition(attribute, op, value);
+            if (value is null)
+                _query.Criteria.AddCondition(attribute, op);
+            else
+                _query.Criteria.AddCondition(attribute, op, value);
+
             return this;
         }
 

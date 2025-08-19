@@ -83,7 +83,10 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>The builder instance for method chaining</returns>
         public LinkEntityBuilder Where(string attribute, ConditionOperator op, object value)
         {
-            _linkEntity.LinkCriteria.AddCondition(attribute, op, value);
+            if (value is null)
+                _linkEntity.LinkCriteria.AddCondition(attribute, op);
+            else
+                _linkEntity.LinkCriteria.AddCondition(attribute, op, value);
             return this;
         }
 
