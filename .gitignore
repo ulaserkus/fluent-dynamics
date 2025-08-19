@@ -10,3 +10,4 @@
 /FluentDynamics.Samples.NetFramework/bin/Debug
 /FluentDynamics.Samples.NetFramework/obj/Debug
 /packages
+/FluentDynamics.QueryBuilder/bin/Release/netstandard2.0
