@@ -81,7 +81,7 @@ namespace FluentDynamics.QueryBuilder
         /// <param name="op">The comparison operator</param>
         /// <param name="value">The value to compare against</param>
         /// <returns>The builder instance for method chaining</returns>
-        public LinkEntityBuilder Where(string attribute, ConditionOperator op, object value)
+        public LinkEntityBuilder Where(string attribute, ConditionOperator op, object value = default)
         {
             if (value is null)
                 _linkEntity.LinkCriteria.AddCondition(attribute, op);
