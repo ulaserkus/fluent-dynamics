@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentDynamics.Samples", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentDynamics.Samples.NetFramework", "FluentDynamics.Samples.NetFramework\FluentDynamics.Samples.NetFramework.csproj", "{40915C45-6F1E-4480-990C-80A352267D2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentDynamics.QueryBuilder.Tests", "FluentDynamics.QueryBuilder.Tests\FluentDynamics.QueryBuilder.Tests.csproj", "{D7A345DB-33E7-4883-9882-D82AFD18F4D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{40915C45-6F1E-4480-990C-80A352267D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40915C45-6F1E-4480-990C-80A352267D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40915C45-6F1E-4480-990C-80A352267D2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7A345DB-33E7-4883-9882-D82AFD18F4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A345DB-33E7-4883-9882-D82AFD18F4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A345DB-33E7-4883-9882-D82AFD18F4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A345DB-33E7-4883-9882-D82AFD18F4D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
