@@ -14,6 +14,8 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 - 📑 **Pagination** - Built-in support for handling paged results
 - 🔗 **Complex Joins** - Easily create and configure link-entity operations
 - 🧩 **Extensible** - Clean architecture for extending functionality
+- 🛠 **FetchXML Conversion** - Convert queries to FetchXML easily
+- 🧮 **Distinct, NoLock, QueryHint, ForceSeek** - Advanced query options
 
 ## Installation
 
@@ -32,7 +34,6 @@ dotnet add package FluentDynamics.QueryBuilder
 ## Basic Usage
 
 ```csharp
-// Import the namespace
 using FluentDynamics.QueryBuilder;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -40,7 +41,9 @@ using Microsoft.Xrm.Sdk.Query;
 // Create a simple query
 var query = Query.For("account")
     .Select("name", "accountnumber", "telephone1")
-    .Where("statecode", ConditionOperator.Equal, 0)
+    .Where(f => f
+        .Condition("statecode", ConditionOperator.Equal, 0)
+    )
     .OrderBy("name");
 
 // Execute the query
@@ -52,20 +55,22 @@ var accounts = results.ToList();
 
 ## Advanced Examples
 
-### Complex Filtering
+### Complex Filtering (Nested AND/OR)
 
 ```csharp
 var query = Query.For("contact")
     .Select("firstname", "lastname", "emailaddress1")
-    .Where("statecode", ConditionOperator.Equal, 0)
-    .And(q => {
-        q.Where("createdon", ConditionOperator.LastXDays, 30);
-        q.Where("emailaddress1", ConditionOperator.NotNull);
-    })
-    .Or(q => {
-        q.Where("parentcustomerid", ConditionOperator.Equal, accountId);
-        q.Where("address1_city", ConditionOperator.Equal, "Seattle");
-    })
+    .Where(f => f
+        .Condition("statecode", ConditionOperator.Equal, 0)
+        .And(fa => fa
+            .Condition("createdon", ConditionOperator.LastXDays, 30)
+            .Condition("emailaddress1", ConditionOperator.NotNull)
+        )
+        .Or(fo => fo
+            .Condition("parentcustomerid", ConditionOperator.Equal, accountId)
+            .Condition("address1_city", ConditionOperator.Equal, "Seattle")
+        )
+    )
     .OrderBy("lastname")
     .OrderBy("firstname");
 ```
@@ -75,11 +80,15 @@ var query = Query.For("contact")
 ```csharp
 var query = Query.For("opportunity")
     .Select("name", "estimatedvalue", "closeprobability")
-    .Where("statecode", ConditionOperator.Equal, 0)
+    .Where(f => f
+        .Condition("statecode", ConditionOperator.Equal, 0)
+    )
     .Link("account", "customerid", "accountid", JoinOperator.Inner, link => {
         link.Select("name", "accountnumber")
             .As("account")
-            .Where("statecode", ConditionOperator.Equal, 0);
+            .Where(f => f
+                .Condition("statecode", ConditionOperator.Equal, 0)
+            );
     })
     .Link("contact", "customerid", "contactid", JoinOperator.LeftOuter, link => {
         link.Select("fullname", "emailaddress1")
@@ -87,7 +96,7 @@ var query = Query.For("opportunity")
     });
 ```
 
-### Pagination
+### Pagination & Async
 
 ```csharp
 // Get a specific page
@@ -98,6 +107,19 @@ var allResults = query.RetrieveMultipleAllPages(service);
 
 // Using async version
 var results = await query.RetrieveMultipleAsync(service);
+
+// Async with pagination
+var pageResults = await query.RetrieveMultipleAsync(service, pageNumber: 2, pageSize: 50);
+
+// Async all pages
+var allAsyncResults = await query.RetrieveMultipleAllPagesAsync(service);
+```
+
+### FetchXML Conversion
+
+```csharp
+// Convert QueryExpression to FetchXML
+var fetchXml = query.ToFetchExpression(service);
 ```
 
 ### Working with Results
@@ -114,7 +136,7 @@ var names = results.Select(e => e.GetAttributeValue<string>("name"));
 
 // Get first matching entity
 var matchingContact = results.FirstOrDefault(e => 
-    e.GetAttributeValue<string>("emailaddress1").Contains("example.com"));
+    e.GetAttributeValue<string>("emailaddress1")?.Contains("example.com") == true);
 
 // Safe attribute access
 string name = entity.TryGet<string>("name", "Default Name");
@@ -124,19 +146,17 @@ string name = entity.TryGet<string>("name", "Default Name");
 
 ### Query
 
-The entry point for building queries:
+Entry point for building queries:
 - `Query.For(entityName)` - Creates a new query for the specified entity
 
 ### QueryExpressionBuilder
 
 Methods for configuring the main query:
-- `Select(attributes)` - Specifies columns to include
+- `Select(params string[] attributes)` - Specifies columns to include
 - `SelectAll()` - Includes all columns
-- `Where(attribute, operator, value)` - Adds a filter condition
-- `And(builder)` - Adds a nested AND filter group
-- `Or(builder)` - Adds a nested OR filter group
+- `Where(Action<FilterBuilder> filterConfig)` - Adds a filter group using fluent configuration
 - `OrderBy(attribute, [orderType])` - Adds a sort order
-- `Link(toEntity, fromAttribute, toAttribute, joinType, builder)` - Adds a join
+- `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)` - Adds a join
 - `Top(count)` - Limits the number of records
 - `Distinct()` - Returns only distinct records
 - `NoLock()` - Uses NOLOCK hint
@@ -145,14 +165,34 @@ Methods for configuring the main query:
 
 ### Execution Methods
 
-- `RetrieveMultiple(service)` - Executes the query
+- `RetrieveMultiple(service)` - Executes the query and returns results
 - `RetrieveMultiple(service, pageNumber, pageSize)` - Executes with pagination
-- `RetrieveMultipleAllPages(service)` - Retrieves all pages
-- `RetrieveMultipleAsync(service)` - Async version
+- `RetrieveMultipleAllPages(service)` - Retrieves all pages synchronously
+- `RetrieveMultipleAsync(service, CancellationToken cancellationToken = default)` - Async version
+- `RetrieveMultipleAsync(service, pageNumber, pageSize, CancellationToken cancellationToken = default)` - Async with pagination
+- `RetrieveMultipleAllPagesAsync(service, CancellationToken cancellationToken = default)` - Async all pages
 - `ToQueryExpression()` - Converts to QueryExpression
 - `ToFetchExpression(service)` - Converts to FetchXML
 
-### Extension Methods
+### FilterBuilder
+
+Builds complex filter logic:
+- `Condition(attribute, operator, value)` - Adds a condition
+- `And(Action<FilterBuilder> nested)` - Adds a nested AND filter group
+- `Or(Action<FilterBuilder> nested)` - Adds a nested OR filter group
+- `ToExpression()` - Returns the built FilterExpression
+
+### LinkEntityBuilder
+
+Configures join/link entities:
+- `Select(params string[] attributes)` - Specifies columns to include from the linked entity
+- `SelectAll()` - Includes all columns from the linked entity
+- `As(alias)` - Sets an alias for the linked entity
+- `OrderBy(attribute, [orderType])` - Adds sort order to the linked entity
+- `Where(Action<FilterBuilder> filterConfig)` - Configures link entity filters using a FilterBuilder
+- `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)` - Adds a nested link-entity (join)
+
+### Extension Methods (LINQ-like)
 
 - `ToList()` / `ToArray()` - Convert results to collection types
 - `FirstOrDefault(predicate)` - Returns first matching entity
@@ -160,6 +200,8 @@ Methods for configuring the main query:
 - `Where(predicate)` - Filters entities
 - `Select(selector)` - Projects entities to new form
 - `TryGet<T>(attributeName, defaultValue)` - Safely gets attribute value
+
+---
 
 ## License
 
