@@ -1,0 +1,11 @@
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\bin\Debug\netstandard2.0\FluentDynamics.QueryBuilder.deps.json
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\bin\Debug\netstandard2.0\FluentDynamics.QueryBuilder.dll
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\bin\Debug\netstandard2.0\FluentDynamics.QueryBuilder.pdb
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.csproj.AssemblyReference.cache
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.AssemblyInfoInputs.cache
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.AssemblyInfo.cs
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.csproj.CoreCompileInputs.cache
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.sourcelink.json
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.dll
+C:\Users\ulas.erkus\Source\Repos\fluent-dynamics\FluentDynamics.QueryBuilder\obj\Debug\netstandard2.0\FluentDynamics.QueryBuilder.pdb

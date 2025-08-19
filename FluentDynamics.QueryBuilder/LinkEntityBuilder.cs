@@ -3,34 +3,99 @@ using System;
 
 namespace FluentDynamics.QueryBuilder
 {
+    /// <summary>
+    /// Builder for configuring link-entity (join) operations in a Dynamics 365/Dataverse query
+    /// </summary>
     public class LinkEntityBuilder
     {
-        private readonly LinkEntity _linkEntity;
+        internal LinkEntity _linkEntity;
 
-        public LinkEntityBuilder(LinkEntity linkEntity)
+        /// <summary>
+        /// Initializes a new instance of the LinkEntityBuilder
+        /// </summary>
+        /// <param name="linkEntity">The link entity to configure</param>
+        internal LinkEntityBuilder(LinkEntity linkEntity)
         {
             _linkEntity = linkEntity;
         }
 
+        /// <summary>
+        /// Specifies which columns to include from the linked entity
+        /// </summary>
+        /// <param name="attributes">Names of attributes to include</param>
+        /// <returns>The builder instance for method chaining</returns>
         public LinkEntityBuilder Select(params string[] attributes)
         {
             _linkEntity.Columns.AddColumns(attributes);
             return this;
         }
 
+        /// <summary>
+        /// Includes all columns from the linked entity in the query results
+        /// </summary>
+        /// <returns>The builder instance for method chaining</returns>
         public LinkEntityBuilder SelectAll()
         {
             _linkEntity.Columns = new ColumnSet(true);
             return this;
         }
 
+        /// <summary>
+        /// Sets an alias for the linked entity to prefix column names in the result set
+        /// </summary>
+        /// <param name="alias">The alias to use for the linked entity</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public LinkEntityBuilder As(string alias)
+        {
+            _linkEntity.EntityAlias = alias;
+            return this;
+        }
+
+        /// <summary>
+        /// Forces the query optimizer to use a specific index seek for the linked entity
+        /// </summary>
+        /// <param name="forceSeek">The index name to use for forced seek operation</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public LinkEntityBuilder ForceSeek(string forceSeek)
+        {
+            _linkEntity.ForceSeek = forceSeek;
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a sort order to the linked entity results
+        /// </summary>
+        /// <param name="attribute">The attribute to sort on</param>
+        /// <param name="orderType">The sort direction (Ascending or Descending)</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public LinkEntityBuilder OrderBy(string attribute, OrderType orderType = OrderType.Ascending)
+        {
+            _linkEntity.Orders.Add(new OrderExpression(attribute, orderType));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a filter condition to the linked entity
+        /// </summary>
+        /// <param name="attribute">The attribute to filter on</param>
+        /// <param name="op">The comparison operator</param>
+        /// <param name="value">The value to compare against</param>
+        /// <returns>The builder instance for method chaining</returns>
         public LinkEntityBuilder Where(string attribute, ConditionOperator op, object value)
         {
             _linkEntity.LinkCriteria.AddCondition(attribute, op, value);
             return this;
         }
 
-        // Nested Link Desteği
+        /// <summary>
+        /// Adds a nested link-entity (join) to this linked entity
+        /// </summary>
+        /// <param name="toEntity">The target entity to join</param>
+        /// <param name="fromAttribute">The attribute from this linked entity</param>
+        /// <param name="toAttribute">The attribute from the target entity</param>
+        /// <param name="joinType">The type of join (Inner, Outer, etc.)</param>
+        /// <param name="linkBuilder">Action to configure the nested link entity</param>
+        /// <returns>The builder instance for method chaining</returns>
         public LinkEntityBuilder Link(
             string toEntity,
             string fromAttribute,
@@ -45,10 +110,16 @@ namespace FluentDynamics.QueryBuilder
             return this;
         }
 
-        // AND/OR desteği
-        public LinkEntityBuilder And(Action<LinkEntityBuilder> nested)
+        /// <summary>
+        /// Adds a nested AND filter group to the linked entity
+        /// </summary>
+        /// <param name="nested">Action to configure the nested filter group</param>
+        /// <param name="filterHint">Optional hint for the filter to influence query optimization</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public LinkEntityBuilder And(Action<LinkEntityBuilder> nested, string filterHint = "")
         {
             var filter = new FilterExpression(LogicalOperator.And);
+            filter.FilterHint = filterHint;
             var nestedBuilder = new LinkEntityBuilder(_linkEntity);
             nested(nestedBuilder);
             foreach (var cond in nestedBuilder._linkEntity.LinkCriteria.Conditions)
@@ -57,9 +128,16 @@ namespace FluentDynamics.QueryBuilder
             return this;
         }
 
-        public LinkEntityBuilder Or(Action<LinkEntityBuilder> nested)
+        /// <summary>
+        /// Adds a nested OR filter group to the linked entity
+        /// </summary>
+        /// <param name="nested">Action to configure the nested filter group</param>
+        /// <param name="filterHint">Optional hint for the filter to influence query optimization</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public LinkEntityBuilder Or(Action<LinkEntityBuilder> nested, string filterHint = "")
         {
             var filter = new FilterExpression(LogicalOperator.Or);
+            filter.FilterHint = filterHint;
             var nestedBuilder = new LinkEntityBuilder(_linkEntity);
             nested(nestedBuilder);
             foreach (var cond in nestedBuilder._linkEntity.LinkCriteria.Conditions)
