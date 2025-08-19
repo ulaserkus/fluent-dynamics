@@ -244,5 +244,179 @@ namespace FluentDynamics.QueryBuilder
             query.Orders.AddRange(queryExpression.Orders);
             return query;
         }
+
+        /// <summary>
+        /// Creates a deep clone of a QueryExpression, including all nested objects and collections.
+        /// Unlike the shallow Clone method, this creates completely independent copies 
+        /// of all reference-type properties (ColumnSet, Criteria, etc.) and collections (LinkEntities, Orders).
+        /// Modifications to the cloned query will not affect the original query.
+        /// </summary>
+        /// <param name="queryExpression">The query expression to deep clone</param>
+        /// <returns>A new instance with completely independent copies of all nested objects</returns>
+        public static QueryExpression DeepClone(this QueryExpression queryExpression)
+        {
+            if (queryExpression == null)
+                return null;
+
+            var query = new QueryExpression
+            {
+                EntityName = queryExpression.EntityName,
+                NoLock = queryExpression.NoLock,
+                Distinct = queryExpression.Distinct,
+                DataSource = queryExpression.DataSource,
+                TopCount = queryExpression.TopCount,
+                ExtensionData = queryExpression.ExtensionData,
+                ForceSeek = queryExpression.ForceSeek,
+                QueryHints = queryExpression.QueryHints,
+            };
+
+            // Deep clone ColumnSet
+            if (queryExpression.ColumnSet != null)
+            {
+                query.ColumnSet = new ColumnSet();
+                if (queryExpression.ColumnSet.AllColumns)
+                {
+                    query.ColumnSet.AllColumns = true;
+                }
+                else
+                {
+                    query.ColumnSet.AddColumns(queryExpression.ColumnSet.Columns.ToArray());
+                }
+            }
+
+            // Deep clone Criteria
+            if (queryExpression.Criteria != null)
+            {
+                query.Criteria = DeepCloneFilterExpression(queryExpression.Criteria);
+            }
+
+            // Deep clone PageInfo
+            if (queryExpression.PageInfo != null)
+            {
+                query.PageInfo = new PagingInfo
+                {
+                    Count = queryExpression.PageInfo.Count,
+                    PageNumber = queryExpression.PageInfo.PageNumber,
+                    PagingCookie = queryExpression.PageInfo.PagingCookie,
+                    ReturnTotalRecordCount = queryExpression.PageInfo.ReturnTotalRecordCount
+                };
+            }
+
+            // Deep clone SubQueryExpression
+            if (queryExpression.SubQueryExpression != null)
+            {
+                query.SubQueryExpression = queryExpression.SubQueryExpression.DeepClone();
+            }
+
+            // Deep clone LinkEntities
+            foreach (var linkEntity in queryExpression.LinkEntities)
+            {
+                query.LinkEntities.Add(DeepCloneLinkEntity(linkEntity));
+            }
+
+            // Deep clone Orders
+            foreach (var order in queryExpression.Orders)
+            {
+                query.Orders.Add(new OrderExpression(order.AttributeName, order.OrderType));
+            }
+
+            return query;
+        }
+
+        /// <summary>
+        /// Deep clones a FilterExpression, including all nested conditions and filters
+        /// </summary>
+        private static FilterExpression DeepCloneFilterExpression(FilterExpression filterExpression)
+        {
+            if (filterExpression == null)
+                return null;
+
+            var clonedFilter = new FilterExpression
+            {
+                FilterOperator = filterExpression.FilterOperator,
+                IsQuickFindFilter = filterExpression.IsQuickFindFilter
+            };
+
+            // Deep clone conditions
+            foreach (var condition in filterExpression.Conditions)
+            {
+                var clonedCondition = new ConditionExpression
+                {
+                    AttributeName = condition.AttributeName,
+                    Operator = condition.Operator,
+                    EntityName = condition.EntityName
+                };
+
+                // Deep clone values
+                if (condition.Values != null && condition.Values.Count > 0)
+                {
+                    clonedCondition.Values.AddRange(condition.Values);
+                }
+
+                clonedFilter.Conditions.Add(clonedCondition);
+            }
+
+            // Deep clone nested filters
+            foreach (var nestedFilter in filterExpression.Filters)
+            {
+                clonedFilter.Filters.Add(DeepCloneFilterExpression(nestedFilter));
+            }
+
+            return clonedFilter;
+        }
+
+        /// <summary>
+        /// Deep clones a LinkEntity, including all nested properties and child LinkEntities
+        /// </summary>
+        private static LinkEntity DeepCloneLinkEntity(LinkEntity linkEntity)
+        {
+            if (linkEntity == null)
+                return null;
+
+            var clonedLink = new LinkEntity
+            {
+                LinkFromEntityName = linkEntity.LinkFromEntityName,
+                LinkToEntityName = linkEntity.LinkToEntityName,
+                LinkFromAttributeName = linkEntity.LinkFromAttributeName,
+                LinkToAttributeName = linkEntity.LinkToAttributeName,
+                JoinOperator = linkEntity.JoinOperator,
+                EntityAlias = linkEntity.EntityAlias,
+                ForceSeek = linkEntity.ForceSeek
+            };
+
+            // Deep clone ColumnSet
+            if (linkEntity.Columns != null)
+            {
+                clonedLink.Columns = new ColumnSet();
+                if (linkEntity.Columns.AllColumns)
+                {
+                    clonedLink.Columns.AllColumns = true;
+                }
+                else
+                {
+                    clonedLink.Columns.AddColumns(linkEntity.Columns.Columns.ToArray());
+                }
+            }
+
+            // Deep clone LinkCriteria
+            if (linkEntity.LinkCriteria != null)
+            {
+                clonedLink.LinkCriteria = DeepCloneFilterExpression(linkEntity.LinkCriteria);
+            }
+
+            // Deep clone Orders
+            foreach (var order in linkEntity.Orders)
+            {
+                clonedLink.Orders.Add(new OrderExpression(order.AttributeName, order.OrderType));
+            }
+
+            // Deep clone nested LinkEntities
+            foreach (var nestedLink in linkEntity.LinkEntities)
+            {
+                clonedLink.LinkEntities.Add(DeepCloneLinkEntity(nestedLink));
+            }
+
+            return clonedLink;
+        }
     }
 }
