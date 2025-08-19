@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentDynamics.QueryBuilder</name>
+    </assembly>
+    <members>
+        <member name="T:FluentDynamics.QueryBuilder.DynamicsExtensions">
+            <summary>
+            Provides extension methods for Dynamics 365/Dataverse entities and query results.
+            Enhances the fluent query API with LINQ-like operations and convenience methods.
+            </summary>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.Clone(FluentDynamics.QueryBuilder.QueryExpressionBuilder)">
+            <summary>
+            Creates a deep clone of a query builder instance
+            </summary>
+            <param name="builder">The query builder to clone</param>
+            <returns>A new instance with the same query configuration</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.ToList(Microsoft.Xrm.Sdk.EntityCollection)">
+            <summary>
+            Converts an EntityCollection to a List of Entity objects
+            </summary>
+            <param name="entities">The entity collection to convert</param>
+            <returns>A List containing the entities, or an empty list if the collection is null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.ToListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously converts an EntityCollection to a List of Entity objects
+            </summary>
+            <param name="entities">The entity collection to convert</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning a List containing the entities</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.ToArray(Microsoft.Xrm.Sdk.EntityCollection)">
+            <summary>
+            Converts an EntityCollection to an array of Entity objects
+            </summary>
+            <param name="entities">The entity collection to convert</param>
+            <returns>An array containing the entities, or an empty array if the collection is null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.ToArrayAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously converts an EntityCollection to an array of Entity objects
+            </summary>
+            <param name="entities">The entity collection to convert</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning an array containing the entities</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.FirstOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,System.Boolean})">
+            <summary>
+            Returns the first entity that satisfies a condition or null if no such entity is found
+            </summary>
+            <param name="entities">The entity collection to search</param>
+            <param name="predicate">A function to test each entity for a condition</param>
+            <returns>The first entity that satisfies the condition, or null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.FirstOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously returns the first entity that satisfies a condition or null if no such entity is found
+            </summary>
+            <param name="entities">The entity collection to search</param>
+            <param name="predicate">A function to test each entity for a condition</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning the first entity that satisfies the condition, or null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.SingleOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,System.Boolean})">
+            <summary>
+            Returns the only entity that satisfies a condition or null if no such entity is found
+            Throws an exception if more than one entity satisfies the condition
+            </summary>
+            <param name="entities">The entity collection to search</param>
+            <param name="predicate">A function to test each entity for a condition</param>
+            <returns>The only entity that satisfies the condition, or null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.SingleOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously returns the only entity that satisfies a condition or null if no such entity is found
+            Throws an exception if more than one entity satisfies the condition
+            </summary>
+            <param name="entities">The entity collection to search</param>
+            <param name="predicate">A function to test each entity for a condition</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning the only entity that satisfies the condition, or null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.Where(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,System.Boolean})">
+            <summary>
+            Filters entities based on a predicate
+            </summary>
+            <param name="entities">The entity collection to filter</param>
+            <param name="predicate">A function to test each entity for a condition</param>
+            <returns>An enumerable containing entities that satisfy the condition</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.WhereAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously filters entities based on a predicate
+            </summary>
+            <param name="entities">The entity collection to filter</param>
+            <param name="predicate">A function to test each entity for a condition</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning an enumerable containing entities that satisfy the condition</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.Select``1(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,``0})">
+            <summary>
+            Projects each entity in a collection into a new form
+            </summary>
+            <typeparam name="TResult">The type of the value returned by the selector</typeparam>
+            <param name="entities">The entity collection to project</param>
+            <param name="selector">A transform function to apply to each entity</param>
+            <returns>An enumerable containing the projected results</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.SelectAsync``1(Microsoft.Xrm.Sdk.EntityCollection,System.Func{Microsoft.Xrm.Sdk.Entity,``0},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously projects each entity in a collection into a new form
+            </summary>
+            <typeparam name="TResult">The type of the value returned by the selector</typeparam>
+            <param name="entities">The entity collection to project</param>
+            <param name="selector">A transform function to apply to each entity</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning an enumerable containing the projected results</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.ToTypedList``1(Microsoft.Xrm.Sdk.EntityCollection)">
+            <summary>
+            Converts an EntityCollection to a List of typed entity objects
+            </summary>
+            <typeparam name="T">The specific entity type to convert to</typeparam>
+            <param name="entities">The entity collection to convert</param>
+            <returns>A List containing the typed entities, or an empty list if the collection is null</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.ToTypedListAsync``1(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously converts an EntityCollection to a List of typed entity objects
+            </summary>
+            <typeparam name="T">The specific entity type to convert to</typeparam>
+            <param name="entities">The entity collection to convert</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning a List containing the typed entities</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.TryGet``1(Microsoft.Xrm.Sdk.Entity,System.String,``0)">
+            <summary>
+            Safely retrieves a typed attribute value from an entity
+            </summary>
+            <typeparam name="T">The expected type of the attribute value</typeparam>
+            <param name="entity">The entity containing the attribute</param>
+            <param name="attributeName">The logical name of the attribute to retrieve</param>
+            <param name="defaultValue">The default value to return if the attribute doesn't exist or is of wrong type</param>
+            <returns>The attribute value as the specified type, or the default value</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.TryGetAsync``1(Microsoft.Xrm.Sdk.Entity,System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously retrieves a typed attribute value from an entity
+            </summary>
+            <typeparam name="T">The expected type of the attribute value</typeparam>
+            <param name="entity">The entity containing the attribute</param>
+            <param name="attributeName">The logical name of the attribute to retrieve</param>
+            <param name="defaultValue">The default value to return if the attribute doesn't exist or is of wrong type</param>
+            <param name="cancellationToken">A token to cancel the operation</param>
+            <returns>A task returning the attribute value as the specified type, or the default value</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.DynamicsExtensions.Clone(Microsoft.Xrm.Sdk.Query.QueryExpression)">
+            <summary>
+            Creates a deep clone of a QueryExpression
+            </summary>
+            <param name="queryExpression">The query expression to clone</param>
+            <returns>A new instance with the same configuration</returns>
+        </member>
+        <member name="T:FluentDynamics.QueryBuilder.FilterBuilder">
+            <summary>
+            Fluent API builder for constructing nested filter groups in Dynamics 365/Dataverse queries.
+            <para>
+            Enables chaining of conditions and logical groups (AND/OR) for building complex filter expressions.
+            </para>
+            </summary>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.FilterBuilder.#ctor(Microsoft.Xrm.Sdk.Query.LogicalOperator)">
+            <summary>
+            Initializes a new filter group with the specified logical operator (AND/OR).
+            </summary>
+            <param name="op">Logical operator for this filter group.</param>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.FilterBuilder.Condition(System.String,Microsoft.Xrm.Sdk.Query.ConditionOperator,System.Object)">
+            <summary>
+            Adds a condition to the filter group.
+            </summary>
+            <param name="attribute">The attribute name to filter on.</param>
+            <param name="op">The comparison operator.</param>
+            <param name="value">The value to compare against (optional).</param>
+            <returns>The builder instance for method chaining.</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.FilterBuilder.And(System.Action{FluentDynamics.QueryBuilder.FilterBuilder})">
+            <summary>
+            Adds a nested AND filter group to this filter group.
+            </summary>
+            <param name="nested">Action to configure the nested filter builder.</param>
+            <returns>The builder instance for method chaining.</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.FilterBuilder.Or(System.Action{FluentDynamics.QueryBuilder.FilterBuilder})">
+            <summary>
+            Adds a nested OR filter group to this filter group.
+            </summary>
+            <param name="nested">Action to configure the nested filter builder.</param>
+            <returns>The builder instance for method chaining.</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.FilterBuilder.ToExpression">
+            <summary>
+            Returns the built <see cref="T:Microsoft.Xrm.Sdk.Query.FilterExpression"/> instance representing this filter group.
+            </summary>
+            <returns>The constructed <see cref="T:Microsoft.Xrm.Sdk.Query.FilterExpression"/>.</returns>
+        </member>
+        <member name="T:FluentDynamics.QueryBuilder.LinkEntityBuilder">
+            <summary>
+            Builder for configuring link-entity (join) operations in a Dynamics 365/Dataverse query
+            </summary>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.#ctor(Microsoft.Xrm.Sdk.Query.LinkEntity)">
+            <summary>
+            Initializes a new instance of the LinkEntityBuilder
+            </summary>
+            <param name="linkEntity">The link entity to configure</param>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.Select(System.String[])">
+            <summary>
+            Specifies which columns to include from the linked entity
+            </summary>
+            <param name="attributes">Names of attributes to include</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.SelectAll">
+            <summary>
+            Includes all columns from the linked entity in the query results
+            </summary>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.As(System.String)">
+            <summary>
+            Sets an alias for the linked entity to prefix column names in the result set
+            </summary>
+            <param name="alias">The alias to use for the linked entity</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.ForceSeek(System.String)">
+            <summary>
+            Forces the query optimizer to use a specific index seek for the linked entity
+            </summary>
+            <param name="forceSeek">The index name to use for forced seek operation</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)">
+            <summary>
+            Adds a sort order to the linked entity results
+            </summary>
+            <param name="attribute">The attribute to sort on</param>
+            <param name="orderType">The sort direction (Ascending or Descending)</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.Where(System.Action{FluentDynamics.QueryBuilder.FilterBuilder})">
+            <summary>
+            Adds a filter group to the query using a fluent <see cref="T:FluentDynamics.QueryBuilder.FilterBuilder"/> configuration.
+            Use this method to define complex filter logic (AND/OR/conditions) for the main query criteria.
+            </summary>
+            <param name="filterConfig">An action to configure the filter group via <see cref="T:FluentDynamics.QueryBuilder.FilterBuilder"/>.</param>
+            <returns>The builder instance for method chaining.</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.LinkEntityBuilder.Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action{FluentDynamics.QueryBuilder.LinkEntityBuilder})">
+            <summary>
+            Adds a nested link-entity (join) to this linked entity
+            </summary>
+            <param name="toEntity">The target entity to join</param>
+            <param name="fromAttribute">The attribute from this linked entity</param>
+            <param name="toAttribute">The attribute from the target entity</param>
+            <param name="joinType">The type of join (Inner, Outer, etc.)</param>
+            <param name="linkBuilder">Action to configure the nested link entity</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="T:FluentDynamics.QueryBuilder.Query">
+            <summary>
+            Entry point for the Dynamics 365/Dataverse fluent query API.
+            Provides factory methods to create query builders for various entity types.
+            </summary>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.Query.For(System.String)">
+            <summary>
+            Creates a new query builder for the specified entity type.
+            </summary>
+            <param name="entityName">The logical name of the entity to query.</param>
+            <returns>A new QueryExpressionBuilder instance configured for the specified entity.</returns>
+        </member>
+        <member name="T:FluentDynamics.QueryBuilder.QueryExpressionBuilder">
+            <summary>
+            Fluent API builder for creating and executing Dynamics 365/Dataverse QueryExpressions
+            </summary>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the QueryExpressionBuilder for the specified entity
+            </summary>
+            <param name="entityName">Logical name of the entity to query</param>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.Select(System.String[])">
+            <summary>
+            Specifies which columns to include in the query results
+            </summary>
+            <param name="attributes">Names of attributes to include</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.SelectAll">
+            <summary>
+            Includes all columns in the query results
+            </summary>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.QueryHint(System.String)">
+            <summary>
+            Adds a query hint to influence query execution plan
+            </summary>
+            <param name="queryHint">The query hint to apply</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.ForceSeek(System.String)">
+            <summary>
+            Forces the query optimizer to use a specific index seek
+            </summary>
+            <param name="forceSeek">The index name to use for forced seek operation</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.Distinct">
+            <summary>
+            Configures the query to return only distinct records
+            </summary>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.NoLock">
+            <summary>
+            Applies NOLOCK hint to the query to reduce locking overhead
+            </summary>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.Where(System.Action{FluentDynamics.QueryBuilder.FilterBuilder})">
+            <summary>
+            Adds a filter group to the query using a fluent <see cref="T:FluentDynamics.QueryBuilder.FilterBuilder"/> configuration.
+            Use this method to define complex filter logic (AND/OR/conditions) for the main query criteria.
+            </summary>
+            <param name="filterConfig">An action to configure the filter group via <see cref="T:FluentDynamics.QueryBuilder.FilterBuilder"/>.</param>
+            <returns>The builder instance for method chaining.</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)">
+            <summary>
+            Adds a sort order to the query
+            </summary>
+            <param name="attribute">The attribute to sort on</param>
+            <param name="orderType">The sort direction (Ascending or Descending)</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.Top(System.Int32)">
+            <summary>
+            Limits the number of records returned
+            </summary>
+            <param name="count">Maximum number of records to return</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action{FluentDynamics.QueryBuilder.LinkEntityBuilder})">
+            <summary>
+            Adds a link-entity (join) to the query
+            </summary>
+            <param name="toEntity">The target entity to join</param>
+            <param name="fromAttribute">The attribute from the base entity</param>
+            <param name="toAttribute">The attribute from the target entity</param>
+            <param name="joinType">The type of join (Inner, Outer, etc.)</param>
+            <param name="linkBuilder">Action to configure the link entity</param>
+            <returns>The builder instance for method chaining</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService)">
+            <summary>
+            Executes the query against the organization service
+            </summary>
+            <param name="service">The organization service</param>
+            <returns>Collection of entities matching the query criteria</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32)">
+            <summary>
+            Executes the query with pagination
+            </summary>
+            <param name="service">The organization service</param>
+            <param name="pageNumber">The page number to retrieve</param>
+            <param name="pageSize">Number of records per page</param>
+            <returns>Collection of entities for the specified page</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.RetrieveMultipleAllPages(Microsoft.Xrm.Sdk.IOrganizationService)">
+            <summary>
+            Executes the query and automatically retrieves all pages of results
+            </summary>
+            <param name="service">The organization service</param>
+            <returns>Collection containing all entities from all pages</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously executes the query
+            </summary>
+            <param name="service">The organization service</param>
+            <param name="cancellationToken">Cancellation token to cancel the operation</param>
+            <returns>Task returning collection of entities</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously executes the query with pagination
+            </summary>
+            <param name="service">The organization service</param>
+            <param name="pageNumber">The page number to retrieve</param>
+            <param name="pageSize">Number of records per page</param>
+            <param name="cancellationToken">Cancellation token to cancel the operation</param>
+            <returns>Task returning collection of entities for the specified page</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.RetrieveMultipleAllPagesAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously executes the query and retrieves all pages of results
+            </summary>
+            <param name="service">The organization service</param>
+            <param name="cancellationToken">Cancellation token to cancel the operation</param>
+            <returns>Task returning collection of all entities from all pages</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.ToQueryExpression">
+            <summary>
+            Converts to the underlying QueryExpression
+            </summary>
+            <returns>The built QueryExpression</returns>
+        </member>
+        <member name="M:FluentDynamics.QueryBuilder.QueryExpressionBuilder.ToFetchExpression(Microsoft.Xrm.Sdk.IOrganizationService)">
+            <summary>
+            Converts the QueryExpression to FetchXML format
+            </summary>
+            <param name="service">The organization service</param>
+            <returns>A FetchExpression containing the FetchXML equivalent of this query</returns>
+        </member>
+    </members>
+</doc>
