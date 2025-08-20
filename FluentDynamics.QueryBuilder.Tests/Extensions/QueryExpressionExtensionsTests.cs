@@ -86,5 +86,88 @@ namespace FluentDynamics.QueryBuilder.Tests.Extensions
             // Assert
             Assert.Null(result);
         }
+        [Fact]
+        public void ShallowClone_LinkEntitiesContainSameReferences()
+        {
+            // Create original query with a link entity
+            var originalQuery = new QueryExpression("account");
+            var linkEntity = new LinkEntity("account", "contact", "id", "id", JoinOperator.Inner);
+            originalQuery.LinkEntities.Add(linkEntity);
+
+            // Clone the query
+            var clonedQuery = originalQuery.ShallowClone();
+
+            // The collection references are different
+            Assert.NotSame(originalQuery.LinkEntities, clonedQuery.LinkEntities);
+
+            // But the item references inside the collections are the same
+            Assert.Same(linkEntity, clonedQuery.LinkEntities[0]);
+
+            // Modifying an item in one collection affects both because they reference the same object
+            linkEntity.EntityAlias = "test_alias";
+            Assert.Equal("test_alias", originalQuery.LinkEntities[0].EntityAlias);
+            Assert.Equal("test_alias", clonedQuery.LinkEntities[0].EntityAlias);
+
+            // Adding to one collection doesn't affect the other
+            clonedQuery.LinkEntities.Add(new LinkEntity("account", "opportunity", "id", "id", JoinOperator.Inner));
+            Assert.Single(originalQuery.LinkEntities);
+            Assert.Equal(2, clonedQuery.LinkEntities.Count);
+        }
+
+        [Fact]
+        public void CloneForPagination_CopiesQueryPropertiesExceptPaging()
+        {
+            // Test pagination clone preserves original settings
+            var originalQuery = new QueryExpression("account")
+            {
+                ColumnSet = new ColumnSet("name"),
+                TopCount = 100,
+                Distinct = true,
+                NoLock = true
+            };
+            originalQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+
+            var clonedQuery = originalQuery.CloneForPagination(2, 50, "cookie");
+
+            Assert.Equal(originalQuery.EntityName, clonedQuery.EntityName);
+            Assert.Equal(originalQuery.TopCount, clonedQuery.TopCount);
+            Assert.Equal(originalQuery.Distinct, clonedQuery.Distinct);
+            Assert.Equal(originalQuery.NoLock, clonedQuery.NoLock);
+            Assert.Equal(2, clonedQuery.PageInfo.PageNumber);
+            Assert.Equal(50, clonedQuery.PageInfo.Count);
+            Assert.Equal("cookie", clonedQuery.PageInfo.PagingCookie);
+        }
+
+        [Fact]
+        public void CloneForPagination_NullQuery_ReturnsNull()
+        {
+            // Test null handling
+            QueryExpression nullQuery = null;
+            var result = nullQuery.CloneForPagination(1, 50);
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void DeepClone_NestedLinkEntityCriteria_CreatesIndependentCopy()
+        {
+            // Test deep cloning of nested link entity filters
+            var originalQuery = new QueryExpression("account");
+            var link = new LinkEntity("account", "contact", "id", "id", JoinOperator.Inner);
+            link.LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            var nestedLink = new LinkEntity("contact", "opportunity", "id", "id", JoinOperator.Inner);
+            nestedLink.LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            link.LinkEntities.Add(nestedLink);
+            originalQuery.LinkEntities.Add(link);
+
+            var clonedQuery = originalQuery.DeepClone();
+            clonedQuery.LinkEntities[0].LinkCriteria.AddCondition("name", ConditionOperator.NotNull);
+            clonedQuery.LinkEntities[0].LinkEntities[0].LinkCriteria.AddCondition("name", ConditionOperator.NotNull);
+
+            Assert.Single(originalQuery.LinkEntities[0].LinkCriteria.Conditions);
+            Assert.Equal(2, clonedQuery.LinkEntities[0].LinkCriteria.Conditions.Count);
+
+            Assert.Single(originalQuery.LinkEntities[0].LinkEntities[0].LinkCriteria.Conditions);
+            Assert.Equal(2, clonedQuery.LinkEntities[0].LinkEntities[0].LinkCriteria.Conditions.Count);
+        }
     }
 }

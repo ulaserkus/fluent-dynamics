@@ -1,5 +1,6 @@
 ﻿using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Crm.Sdk.Messages;
+using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Moq;
@@ -290,5 +291,67 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
             Assert.Equal(entity.Id, result.Id);
         }
 
+        [Fact]
+        public void QueryHint_SetsQueryHintsProperty()
+        {
+            var builder = Query.For("account").QueryHint("RECOMPILE");
+            var query = builder.ToQueryExpression();
+            Assert.Equal("RECOMPILE", query.QueryHints);
+        }
+
+        [Fact]
+        public void ForceSeek_SetsForceSeekProperty()
+        {
+            var builder = Query.For("account").ForceSeek("IX_AccountName");
+            var query = builder.ToQueryExpression();
+            Assert.Equal("IX_AccountName", query.ForceSeek);
+        }
+
+        [Fact]
+        public void DebugView_ReturnsQueryStructureAsString()
+        {
+            var builder = Query.For("account")
+                .Select("name")
+                .Where(f => f.Equal("statecode", 0))
+                .OrderBy("name")
+                .Top(10);
+
+            var debugView = builder.DebugView();
+
+            Assert.NotNull(debugView);
+            Assert.Contains("account", debugView);
+            Assert.Contains("name", debugView);
+            Assert.Contains("Top Count: 10", debugView);
+        }
+
+        [Fact]
+        public void ExistsAsync_ReturnsTrueWhenResultsFound()
+        {
+            var serviceMock = new Mock<IOrganizationServiceAsync2>();
+            serviceMock.Setup(s => s.RetrieveMultipleAsync(It.IsAny<QueryExpression>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new EntityCollection { Entities = { new Entity("account") } });
+
+            var builder = Query.For("account");
+            var result = builder.ExistsAsync(serviceMock.Object).Result;
+
+            Assert.True(result);
+            serviceMock.Verify(s => s.RetrieveMultipleAsync(
+                It.Is<QueryExpression>(q => q.TopCount == 1 && q.ColumnSet.Columns.Count == 0),
+                It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Fact]
+        public void ExistsAsync_ReturnsFalseWhenNoResultsFound()
+        {
+            var serviceMock = new Mock<IOrganizationServiceAsync2>();
+            serviceMock.Setup(s => s.RetrieveMultipleAsync(It.IsAny<QueryExpression>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new EntityCollection());
+
+            var builder = Query.For("account");
+            var result = builder.ExistsAsync(serviceMock.Object).Result;
+
+            Assert.False(result);
+        }
     }
 }

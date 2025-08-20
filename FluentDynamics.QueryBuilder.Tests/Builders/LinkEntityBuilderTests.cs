@@ -263,5 +263,73 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
         }
 
         #endregion
+
+        [Fact]
+        public void OrderByDesc_AddsDescendingOrderExpression()
+        {
+            var q = Query.For("account")
+                .Link("contact", "primarycontactid", "contactid", JoinOperator.Inner,
+                    l => l.OrderByDesc("lastname"))
+                .ToQueryExpression();
+
+            var link = Assert.Single(q.LinkEntities);
+            var order = Assert.Single(link.Orders);
+            Assert.Equal("lastname", order.AttributeName);
+            Assert.Equal(OrderType.Descending, order.OrderType);
+        }
+
+        [Fact]
+        public void MultipleOrderBy_PreservesOrderingSequence()
+        {
+            var q = Query.For("account")
+                .Link("contact", "primarycontactid", "contactid", JoinOperator.Inner,
+                    l => l.OrderBy("firstname").OrderByDesc("lastname"))
+                .ToQueryExpression();
+
+            var link = Assert.Single(q.LinkEntities);
+            Assert.Equal(2, link.Orders.Count);
+            Assert.Equal(OrderType.Ascending, link.Orders[0].OrderType);
+            Assert.Equal(OrderType.Descending, link.Orders[1].OrderType);
+        }
+
+        [Fact]
+        public void Select_AfterSelectAll_OverridesAllColumnsFlag()
+        {
+            var q = Query.For("account")
+                .Link("contact", "primarycontactid", "contactid", JoinOperator.Inner,
+                    l => l.SelectAll().Select("firstname"))
+                .ToQueryExpression();
+
+            var link = Assert.Single(q.LinkEntities);
+            Assert.False(link.Columns.AllColumns);
+            Assert.Single(link.Columns.Columns);
+        }
+
+        [Fact]
+        public void Where_WithNestedFiltersAndConditions_BuildsComplexCriteria()
+        {
+            var q = Query.For("account")
+                .Link("contact", "primarycontactid", "contactid", JoinOperator.Inner, l => l
+                    .Where(f => f
+                        .Condition("statecode", ConditionOperator.Equal, 0)
+                        .And(a => a
+                            .Condition("firstname", ConditionOperator.BeginsWith, "A")
+                            .Or(o => o
+                                .Condition("emailaddress1", ConditionOperator.NotNull)
+                                .Condition("telephone1", ConditionOperator.NotNull)))))
+                .ToQueryExpression();
+
+            var link = Assert.Single(q.LinkEntities);
+            Assert.NotNull(link.LinkCriteria);
+            Assert.Single(link.LinkCriteria.Conditions);
+            Assert.Single(link.LinkCriteria.Filters);
+
+            var andFilter = link.LinkCriteria.Filters[0];
+            Assert.Single(andFilter.Conditions);
+            Assert.Single(andFilter.Filters);
+
+            var orFilter = andFilter.Filters[0];
+            Assert.Equal(2, orFilter.Conditions.Count);
+        }
     }
 }

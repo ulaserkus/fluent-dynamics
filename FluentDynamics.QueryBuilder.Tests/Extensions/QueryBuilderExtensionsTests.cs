@@ -130,6 +130,81 @@ namespace FluentDynamics.QueryBuilder.Tests.Extensions
             Assert.NotSame(originalLinkCriteria, clonedLinkCriteria);
         }
 
+        [Fact]
+        public void ShallowClone_ProducesIndependentQueryBuilderButSharedCollections()
+        {
+            var original = Query.For("account").Select("name");
+            var clone = original.ShallowClone();
 
+            // Modify clone's query
+            clone.ToQueryExpression().TopCount = 10;
+
+            // Verify independence of main properties
+            Assert.Null(original.ToQueryExpression().TopCount);
+            Assert.Equal(10, clone.ToQueryExpression().TopCount);
+
+            // But collections like ColumnSet are shared
+            clone.ToQueryExpression().ColumnSet.AddColumns("telephone1");
+            Assert.Contains("telephone1", original.ToQueryExpression().ColumnSet.Columns);
+        }
+
+        [Fact]
+        public void CloneForPagination_SetsPageInfoCorrectly()
+        {
+            var original = Query.For("account").Select("name");
+            var clone = original.CloneForPagination(3, 50, "testcookie");
+
+            var query = clone.ToQueryExpression();
+            Assert.Equal(3, query.PageInfo.PageNumber);
+            Assert.Equal(50, query.PageInfo.Count);
+            Assert.Equal("testcookie", query.PageInfo.PagingCookie);
+        }
+
+        [Fact]
+        public void DebugView_ComplexQuery_IncludesAllElements()
+        {
+            var builder = Query.For("account")
+                .Select("name", "accountnumber")
+                .Where(f => f
+                    .Equal("statecode", 0)
+                    .And(a => a.Equal("name", "Test")))
+                .OrderBy("name")
+                .Top(10)
+                .NoLock()
+                .Distinct()
+                .Link("contact", "accountid", "parentcustomerid", JoinOperator.Inner, l => l
+                    .Select("fullname")
+                    .Where(f => f.Equal("statecode", 0))
+                    .OrderBy("fullname"));
+
+            var debugView = builder.DebugView();
+
+            // Check that debug view contains important elements
+            Assert.Contains("QueryExpression: account", debugView);
+            Assert.Contains("name", debugView);
+            Assert.Contains("accountnumber", debugView);
+            Assert.Contains("Criteria:", debugView);
+            Assert.Contains("Link Entities:", debugView);
+            Assert.Contains("Order By:", debugView);
+            Assert.Contains("Top Count: 10", debugView);
+            Assert.Contains("NoLock: Yes", debugView);
+            Assert.Contains("Distinct: Yes", debugView);
+        }
+
+        [Fact]
+        public void DebugView_FormatValues_HandlesSpecialTypes()
+        {
+            // This test checks that the DebugView correctly formats special types
+            var id = Guid.NewGuid();
+            var builder = Query.For("account")
+                .Where(f => f
+                    .Equal("accountid", id)
+                    .Equal("createdon", new DateTime(2023, 1, 1)));
+
+            var debugView = builder.DebugView();
+
+            Assert.Contains(id.ToString("B"), debugView);
+            Assert.Contains("2023-01-01", debugView);
+        }
     }
 }

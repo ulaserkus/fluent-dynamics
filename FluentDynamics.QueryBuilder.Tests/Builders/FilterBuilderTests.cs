@@ -92,5 +92,53 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
                 c => Assert.Equal("b", c.AttributeName),
                 c => Assert.Equal("c", c.AttributeName));
         }
+
+        [Fact]
+        public void Condition_NullValue_AddsConditionWithoutValue()
+        {
+            // Test null value handling
+            var filter = new FilterBuilder(LogicalOperator.And)
+                .Condition("attribute", ConditionOperator.Null);
+
+            var expr = filter.ToExpression();
+            Assert.Single(expr.Conditions);
+            Assert.Empty(expr.Conditions[0].Values);
+        }
+
+        [Fact]
+        public void Condition_MultipleCalls_AllConditionsAdded()
+        {
+            // Test adding multiple conditions
+            var filter = new FilterBuilder(LogicalOperator.And)
+                .Condition("attr1", ConditionOperator.Equal, 1)
+                .Condition("attr2", ConditionOperator.Equal, 2)
+                .Condition("attr3", ConditionOperator.Equal, 3);
+
+            var expr = filter.ToExpression();
+            Assert.Equal(3, expr.Conditions.Count);
+        }
+
+        [Fact]
+        public void And_WithoutActions_DoesNotAddFilter()
+        {
+            // Edge case: empty nested filter
+            var filter = new FilterBuilder(LogicalOperator.And);
+            var nestedBuilder = new FilterBuilder(LogicalOperator.And);
+            var expr = filter.ToExpression();
+
+            Assert.Empty(expr.Filters);
+        }
+
+        [Fact]
+        public void Or_WithEmptyChildFilter_AddsEmptyFilter()
+        {
+            // Branch coverage: empty child filter
+            var filter = new FilterBuilder(LogicalOperator.And);
+            filter.Or(or => { });
+
+            var expr = filter.ToExpression();
+            Assert.Single(expr.Filters);
+            Assert.Empty(expr.Filters[0].Conditions);
+        }
     }
 }

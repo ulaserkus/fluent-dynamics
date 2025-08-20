@@ -1,8 +1,9 @@
 ﻿using FluentDynamics.QueryBuilder.Builders;
+using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Xrm.Sdk.Query;
 using Xunit;
 
-namespace FluentDynamics.QueryBuilder.Extensions
+namespace FluentDynamics.QueryBuilder.Tests.Extensions
 {
     public class FilterBuilderExtensionsTests
     {
@@ -1851,5 +1852,67 @@ namespace FluentDynamics.QueryBuilder.Extensions
         }
 
         #endregion
+
+        [Fact]
+        public void ChainedFilterExtensions_BuildsCorrectFilterExpression()
+        {
+            // Test chaining multiple extension methods
+            var filter = new FilterBuilder(LogicalOperator.And)
+                .Equal("statecode", 0)
+                .IsNotNull("name")
+                .GreaterThan("revenue", 10000);
+
+            var expr = filter.ToExpression();
+            Assert.Equal(3, expr.Conditions.Count);
+            Assert.Equal(LogicalOperator.And, expr.FilterOperator);
+        }
+
+        [Fact]
+        public void NestedFilterExtensions_BuildsCorrectFilterHierarchy()
+        {
+            // Test nesting extensions with And/Or
+            var filter = new FilterBuilder(LogicalOperator.And)
+                .Equal("statecode", 0)
+                .And(a => a
+                    .GreaterThan("revenue", 10000)
+                    .LastXDays("createdon", 30)
+                )
+                .Or(o => o
+                    .Like("name", "%Inc%")
+                    .EndsWith("name", "LLC"));
+
+            var expr = filter.ToExpression();
+            Assert.Single(expr.Conditions);
+            Assert.Equal(2, expr.Filters.Count);
+
+            var andFilter = expr.Filters[0];
+            Assert.Equal(2, andFilter.Conditions.Count);
+
+            var orFilter = expr.Filters[1];
+            Assert.Equal(2, orFilter.Conditions.Count);
+        }
+
+        [Fact]
+        public void DateTimeExtensions_HandlesTimeComponent()
+        {
+            // Test date/time handling in extensions
+            var date = new DateTime(2023, 1, 1, 14, 30, 0);
+            var filter = new FilterBuilder(LogicalOperator.And)
+                .On("createdon", date);
+
+            var expr = filter.ToExpression();
+            var condition = Assert.Single(expr.Conditions);
+            var value = Assert.Single(condition.Values);
+            Assert.Equal(date, value);
+            Assert.Equal(date.TimeOfDay, ((DateTime)value).TimeOfDay);
+        }
+
+        [Fact]
+        public void NullFilterBuilder_ThrowsException()
+        {
+            // Test null reference handling
+            FilterBuilder nullBuilder = null;
+            Assert.Throws<NullReferenceException>(() => nullBuilder.Equal("name", "Test"));
+        }
     }
 }
