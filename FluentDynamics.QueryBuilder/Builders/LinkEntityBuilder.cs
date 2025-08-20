@@ -64,16 +64,27 @@ namespace FluentDynamics.QueryBuilder.Builders
         }
 
         /// <summary>
-        /// Adds a sort order to the linked entity results
+        /// Adds a ascending sort order to the linked entity results
         /// </summary>
         /// <param name="attribute">The attribute to sort on</param>
-        /// <param name="orderType">The sort direction (Ascending or Descending)</param>
         /// <returns>The builder instance for method chaining</returns>
-        public LinkEntityBuilder OrderBy(string attribute, OrderType orderType = OrderType.Ascending)
+        public LinkEntityBuilder OrderBy(string attribute)
         {
-            _linkEntity.Orders.Add(new OrderExpression(attribute, orderType));
+            _linkEntity.Orders.Add(new OrderExpression(attribute, OrderType.Ascending));
             return this;
         }
+
+        /// <summary>
+        /// Adds a descending sort order to the linked entity results
+        /// </summary>
+        /// <param name="attribute">The attribute to sort on</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public LinkEntityBuilder OrderByDesc(string attribute)
+        {
+            _linkEntity.Orders.Add(new OrderExpression(attribute, OrderType.Descending));
+            return this;
+        }
+
 
         /// <summary>
         /// Adds a filter group to the query using a fluent <see cref="FilterBuilder"/> configuration.

@@ -107,14 +107,24 @@ namespace FluentDynamics.QueryBuilder.Builders
         }
 
         /// <summary>
-        /// Adds a sort order to the query
+        /// Adds a ascending sort order to the linked entity results
         /// </summary>
         /// <param name="attribute">The attribute to sort on</param>
-        /// <param name="orderType">The sort direction (Ascending or Descending)</param>
         /// <returns>The builder instance for method chaining</returns>
-        public QueryExpressionBuilder OrderBy(string attribute, OrderType orderType = OrderType.Ascending)
+        public QueryExpressionBuilder OrderBy(string attribute)
         {
-            _query.AddOrder(attribute, orderType);
+            _query.AddOrder(attribute, OrderType.Ascending);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a descending sort order to the linked entity results
+        /// </summary>
+        /// <param name="attribute">The attribute to sort on</param>
+        /// <returns>The builder instance for method chaining</returns>
+        public QueryExpressionBuilder OrderByDesc(string attribute)
+        {
+            _query.AddOrder(attribute, OrderType.Descending);
             return this;
         }
 

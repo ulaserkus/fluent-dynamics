@@ -128,7 +128,7 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
         {
             var q = Query.For("account")
                 .Link("contact", "primarycontactid", "contactid", JoinOperator.Inner,
-                    l => l.OrderBy("firstname", OrderType.Descending))
+                    l => l.OrderBy("firstname"))
                 .ToQueryExpression();
 
             var link = Assert.Single(q.LinkEntities);
