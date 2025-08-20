@@ -1,4 +1,4 @@
-using FluentDynamics.QueryBuilder.Builders;
+﻿using FluentDynamics.QueryBuilder.Builders;
 using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -27,6 +27,45 @@ namespace FluentDynamics.QueryBuilder.Extensions
             {
                 _query = builder._query.DeepClone()
             };
+        }
+
+        /// <summary>
+        /// Creates a shallow clone of a query builder instance
+        /// </summary>
+        /// <param name="builder">The query builder to clone</param>
+        /// <returns>A new instance with the same query configuration</returns>
+        public static QueryExpressionBuilder ShallowClone(this QueryExpressionBuilder builder)
+        {
+            return new QueryExpressionBuilder(builder._query.EntityName)
+            {
+                _query = builder._query.ShallowClone()
+            };
+        }
+
+        /// <summary>
+        /// Clones a QueryExpressionBuilder optimized for pagination
+        /// </summary>
+        /// <param name="builder">The builder to clone</param>
+        /// <param name="pageNumber">The page number</param>
+        /// <param name="pageSize">Number of records per page</param>
+        /// <param name="pagingCookie">Optional paging cookie from previous results</param>
+        /// <returns>New builder instance configured for the specified page</returns>
+        public static QueryExpressionBuilder CloneForPagination(
+            this QueryExpressionBuilder builder,
+            int pageNumber,
+            int pageSize,
+            string pagingCookie = null)
+        {
+            var clone = builder.ShallowClone(); 
+
+            clone._query.PageInfo = new PagingInfo
+            {
+                PageNumber = pageNumber,
+                Count = pageSize,
+                PagingCookie = pagingCookie
+            };
+
+            return clone;
         }
 
         /// <summary>
@@ -321,6 +360,36 @@ namespace FluentDynamics.QueryBuilder.Extensions
             {
                 query.Orders.Add(new OrderExpression(order.AttributeName, order.OrderType));
             }
+
+            return query;
+        }
+
+        /// <summary>
+        /// Creates a lightweight clone of a QueryExpression optimized for pagination.
+        /// Only the pagination-related properties are modified, keeping the rest shared.
+        /// </summary>
+        /// <param name="queryExpression">The query expression to clone for pagination</param>
+        /// <param name="pageNumber">The page number to set</param>
+        /// <param name="pageSize">The page size to set</param>
+        /// <param name="pagingCookie">The paging cookie (optional)</param>
+        /// <returns>A new instance with updated pagination properties</returns>
+        public static QueryExpression CloneForPagination(
+            this QueryExpression queryExpression,
+            int pageNumber,
+            int pageSize,
+            string pagingCookie = null)
+        {
+            if (queryExpression == null)
+                return null;
+
+            // Create a new instance with same core settings
+            var query = queryExpression.ShallowClone();
+            query.PageInfo = new PagingInfo
+            {
+                PageNumber = pageNumber,
+                Count = pageSize,
+                PagingCookie = pagingCookie
+            };
 
             return query;
         }

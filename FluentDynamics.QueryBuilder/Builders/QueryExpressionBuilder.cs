@@ -171,7 +171,7 @@ namespace FluentDynamics.QueryBuilder.Builders
         /// <returns>Collection of entities for the specified page</returns>
         public EntityCollection RetrieveMultiple(IOrganizationService service, int pageNumber, int pageSize)
         {
-            var query = _query.DeepClone();
+            var query = _query.CloneForPagination(pageNumber, pageSize);
             query.PageInfo = new PagingInfo
             {
                 PageNumber = pageNumber,
@@ -192,7 +192,7 @@ namespace FluentDynamics.QueryBuilder.Builders
             int pageSize = 5000;
             string pagingCookie = null;
             bool moreRecords;
-            var query = _query.DeepClone();
+            var query = _query.CloneForPagination(pageNumber, pageSize, pagingCookie);
 
             do
             {
@@ -291,7 +291,7 @@ namespace FluentDynamics.QueryBuilder.Builders
         /// <returns>Task returning collection of entities for the specified page</returns>
         public async Task<EntityCollection> RetrieveMultipleAsync(IOrganizationServiceAsync2 service, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
-            var query = _query.DeepClone();
+            var query = _query.CloneForPagination(pageNumber, pageSize);
             query.PageInfo = new PagingInfo
             {
                 PageNumber = pageNumber,
@@ -313,7 +313,7 @@ namespace FluentDynamics.QueryBuilder.Builders
             int pageSize = 5000;
             string pagingCookie = null;
             bool moreRecords;
-            var query = _query.DeepClone();
+            var query = _query.CloneForPagination(pageNumber, pageSize, pagingCookie);
 
             do
             {
