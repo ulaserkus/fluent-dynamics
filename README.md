@@ -4,10 +4,10 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 
 [![NuGet](https://img.shields.io/nuget/v/FluentDynamics.QueryBuilder.svg)](https://www.nuget.org/packages/FluentDynamics.QueryBuilder/)
 [![License](https://img.shields.io/github/license/ulaserkus/fluent-dynamics)](LICENSE)
-![Line Coverage](https://img.shields.io/badge/line%20coverage-84.44%25-brightgreen)
-![Branch Coverage](https://img.shields.io/badge/branch%20coverage-61.36%25-orange)
-![Method Coverage](https://img.shields.io/badge/method%20coverage-87.23%25-brightgreen)
-![Tests](https://img.shields.io/badge/tests-150%20passed-brightgreen)
+![Line Coverage](https://img.shields.io/badge/line%20coverage-85.35%25-brightgreen)
+![Branch Coverage](https://img.shields.io/badge/branch%20coverage-72.72%25-yellow)
+![Method Coverage](https://img.shields.io/badge/method%20coverage-94.55%25-brightgreen)
+![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)
 
 ## Features
 
@@ -283,20 +283,20 @@ Configures join/link entities:
 ### Module Coverage
 | Module | Line | Branch | Method |
 |--------|------|--------|--------|
-| FluentDynamics.QueryBuilder | 84.44% | 61.36% | 87.23% |
+| FluentDynamics.QueryBuilder | 85.35% | 72.72% | 94.55% |
 
 ### Overall Coverage
 | Metric | Line | Branch | Method |
 |--------|------|--------|--------|
-| Total | 84.44% | 61.36% | 87.23% |
-| Average | 84.44% | 61.36% | 87.23% |
+| Total | 85.35% | 72.72% | 94.55% |
+| Average | 85.35% | 72.72% | 94.55% |
 
 ### Test Summary
-- Total Tests: 150
+- Total Tests: 180
 - Failed: 0
-- Succeeded: 150
+- Succeeded: 180
 - Skipped: 0
-- Duration: 1.5s
+- Duration: 2.5s
 
 ---
 
