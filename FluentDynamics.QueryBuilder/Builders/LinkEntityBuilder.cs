@@ -1,7 +1,7 @@
 using Microsoft.Xrm.Sdk.Query;
 using System;
 
-namespace FluentDynamics.QueryBuilder
+namespace FluentDynamics.QueryBuilder.Builders
 {
     /// <summary>
     /// Builder for configuring link-entity (join) operations in a Dynamics 365/Dataverse query
@@ -26,6 +26,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>The builder instance for method chaining</returns>
         public LinkEntityBuilder Select(params string[] attributes)
         {
+            _linkEntity.Columns = new ColumnSet();
             _linkEntity.Columns.AddColumns(attributes);
             return this;
         }

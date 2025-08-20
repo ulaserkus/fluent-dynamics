@@ -1,108 +1,117 @@
-SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\DynamicsExtensions.cs
-FN:23,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.DynamicsExtensions::DeepClone(FluentDynamics.QueryBuilder.QueryExpressionBuilder)
-FNDA:1,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.DynamicsExtensions::DeepClone(FluentDynamics.QueryBuilder.QueryExpressionBuilder)
-DA:24,1
-DA:25,1
+SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Query.cs
+FN:17,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Query::For(System.String)
+FNDA:48,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Query::For(System.String)
+DA:18,48
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Extensions\DynamicsExtensions.cs
+FN:25,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepClone(FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepClone(FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder)
 DA:26,1
 DA:27,1
-FN:36,System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::ToList(Microsoft.Xrm.Sdk.EntityCollection)
-FNDA:1,System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::ToList(Microsoft.Xrm.Sdk.EntityCollection)
-DA:37,1
-BRDA:37,1,0,1
-BRDA:37,1,1,0
-BRDA:37,13,0,0
-BRDA:37,13,1,0
-BRDA:37,25,0,1
-BRDA:37,25,1,1
-FN:47,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.DynamicsExtensions::ToListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.DynamicsExtensions::ToListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
-DA:48,0
-FN:57,Microsoft.Xrm.Sdk.Entity[] FluentDynamics.QueryBuilder.DynamicsExtensions::ToArray(Microsoft.Xrm.Sdk.EntityCollection)
-FNDA:0,Microsoft.Xrm.Sdk.Entity[] FluentDynamics.QueryBuilder.DynamicsExtensions::ToArray(Microsoft.Xrm.Sdk.EntityCollection)
-DA:58,0
-BRDA:58,1,0,0
-BRDA:58,1,1,0
-BRDA:58,13,0,0
-BRDA:58,13,1,0
-BRDA:58,25,0,0
-BRDA:58,25,1,0
-FN:68,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity[]> FluentDynamics.QueryBuilder.DynamicsExtensions::ToArrayAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity[]> FluentDynamics.QueryBuilder.DynamicsExtensions::ToArrayAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
-DA:69,0
-FN:79,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.DynamicsExtensions::FirstOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
-FNDA:1,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.DynamicsExtensions::FirstOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
-DA:80,1
-BRDA:80,1,0,0
-BRDA:80,1,1,1
-BRDA:80,12,0,0
-BRDA:80,12,1,1
-FN:91,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::FirstOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::FirstOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
-DA:92,0
-FN:103,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.DynamicsExtensions::SingleOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
-FNDA:1,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.DynamicsExtensions::SingleOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
-DA:104,1
-BRDA:104,1,0,0
-BRDA:104,1,1,1
-BRDA:104,12,0,0
-BRDA:104,12,1,1
-FN:116,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::SingleOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::SingleOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
-DA:117,0
-FN:127,System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::Where(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
-FNDA:1,System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.DynamicsExtensions::Where(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
-DA:128,1
-BRDA:128,1,0,0
-BRDA:128,1,1,1
-BRDA:128,13,0,0
-BRDA:128,13,1,1
-BRDA:128,26,0,0
-BRDA:128,26,1,1
-FN:139,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.DynamicsExtensions::WhereAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.DynamicsExtensions::WhereAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
-DA:140,0
-FN:151,System.Collections.Generic.IEnumerable`1<TResult> FluentDynamics.QueryBuilder.DynamicsExtensions::Select(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>)
-FNDA:0,System.Collections.Generic.IEnumerable`1<TResult> FluentDynamics.QueryBuilder.DynamicsExtensions::Select(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>)
-DA:152,0
-BRDA:152,1,0,0
-BRDA:152,1,1,0
-BRDA:152,13,0,0
-BRDA:152,13,1,0
-BRDA:152,26,0,0
-BRDA:152,26,1,0
-FN:164,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<TResult>> FluentDynamics.QueryBuilder.DynamicsExtensions::SelectAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<TResult>> FluentDynamics.QueryBuilder.DynamicsExtensions::SelectAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>,System.Threading.CancellationToken)
-DA:165,0
-FN:175,System.Collections.Generic.List`1<T> FluentDynamics.QueryBuilder.DynamicsExtensions::ToTypedList(Microsoft.Xrm.Sdk.EntityCollection)
-FNDA:0,System.Collections.Generic.List`1<T> FluentDynamics.QueryBuilder.DynamicsExtensions::ToTypedList(Microsoft.Xrm.Sdk.EntityCollection)
-DA:176,0
-BRDA:176,1,0,0
-BRDA:176,1,1,0
-BRDA:176,13,0,0
-BRDA:176,13,1,0
-BRDA:176,30,0,0
-BRDA:176,30,1,0
-FN:187,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<T>> FluentDynamics.QueryBuilder.DynamicsExtensions::ToTypedListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<T>> FluentDynamics.QueryBuilder.DynamicsExtensions::ToTypedListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
-DA:188,0
-FN:200,T FluentDynamics.QueryBuilder.DynamicsExtensions::TryGet(Microsoft.Xrm.Sdk.Entity,System.String,T)
-FNDA:4,T FluentDynamics.QueryBuilder.DynamicsExtensions::TryGet(Microsoft.Xrm.Sdk.Entity,System.String,T)
-DA:201,4
-DA:202,2
-DA:203,2
-BRDA:201,1,0,4
-BRDA:201,10,0,3
-BRDA:201,26,0,2
-BRDA:201,1,1,2
-BRDA:201,10,1,2
-BRDA:201,26,1,2
-FN:216,System.Threading.Tasks.Task`1<T> FluentDynamics.QueryBuilder.DynamicsExtensions::TryGetAsync(Microsoft.Xrm.Sdk.Entity,System.String,T,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<T> FluentDynamics.QueryBuilder.DynamicsExtensions::TryGetAsync(Microsoft.Xrm.Sdk.Entity,System.String,T,System.Threading.CancellationToken)
-DA:217,0
-FN:226,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.DynamicsExtensions::ShallowClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
-FNDA:0,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.DynamicsExtensions::ShallowClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
-DA:227,0
-DA:228,0
+DA:28,1
+DA:29,1
+FN:38,System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToList(Microsoft.Xrm.Sdk.EntityCollection)
+FNDA:1,System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToList(Microsoft.Xrm.Sdk.EntityCollection)
+DA:39,1
+BRDA:39,1,0,1
+BRDA:39,1,1,0
+BRDA:39,13,0,0
+BRDA:39,13,1,0
+BRDA:39,25,0,1
+BRDA:39,25,1,1
+FN:49,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
+DA:50,0
+FN:59,Microsoft.Xrm.Sdk.Entity[] FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToArray(Microsoft.Xrm.Sdk.EntityCollection)
+FNDA:0,Microsoft.Xrm.Sdk.Entity[] FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToArray(Microsoft.Xrm.Sdk.EntityCollection)
+DA:60,0
+BRDA:60,1,0,0
+BRDA:60,1,1,0
+BRDA:60,13,0,0
+BRDA:60,13,1,0
+BRDA:60,25,0,0
+BRDA:60,25,1,0
+FN:70,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity[]> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToArrayAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity[]> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToArrayAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
+DA:71,0
+FN:81,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::FirstOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
+FNDA:2,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::FirstOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
+DA:82,2
+BRDA:82,1,0,0
+BRDA:82,1,1,2
+BRDA:82,12,0,0
+BRDA:82,12,1,2
+FN:93,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::FirstOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::FirstOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
+DA:94,0
+FN:105,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::SingleOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
+FNDA:1,Microsoft.Xrm.Sdk.Entity FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::SingleOrDefault(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
+DA:106,1
+BRDA:106,1,0,0
+BRDA:106,1,1,1
+BRDA:106,12,0,0
+BRDA:106,12,1,1
+FN:118,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::SingleOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::SingleOrDefaultAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
+DA:119,0
+FN:129,System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::Where(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
+FNDA:1,System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::Where(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>)
+DA:130,1
+BRDA:130,1,0,0
+BRDA:130,1,1,1
+BRDA:130,13,0,0
+BRDA:130,13,1,1
+BRDA:130,26,0,0
+BRDA:130,26,1,1
+FN:141,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::WhereAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<Microsoft.Xrm.Sdk.Entity>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::WhereAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,System.Boolean>,System.Threading.CancellationToken)
+DA:142,0
+FN:153,System.Collections.Generic.IEnumerable`1<TResult> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::Select(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>)
+FNDA:0,System.Collections.Generic.IEnumerable`1<TResult> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::Select(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>)
+DA:154,0
+BRDA:154,1,0,0
+BRDA:154,1,1,0
+BRDA:154,13,0,0
+BRDA:154,13,1,0
+BRDA:154,26,0,0
+BRDA:154,26,1,0
+FN:166,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<TResult>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::SelectAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<TResult>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::SelectAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Func`2<Microsoft.Xrm.Sdk.Entity,TResult>,System.Threading.CancellationToken)
+DA:167,0
+FN:177,System.Collections.Generic.List`1<T> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToTypedList(Microsoft.Xrm.Sdk.EntityCollection)
+FNDA:0,System.Collections.Generic.List`1<T> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToTypedList(Microsoft.Xrm.Sdk.EntityCollection)
+DA:178,0
+BRDA:178,1,0,0
+BRDA:178,1,1,0
+BRDA:178,13,0,0
+BRDA:178,13,1,0
+BRDA:178,30,0,0
+BRDA:178,30,1,0
+FN:189,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<T>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToTypedListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<T>> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ToTypedListAsync(Microsoft.Xrm.Sdk.EntityCollection,System.Threading.CancellationToken)
+DA:190,0
+FN:202,T FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::TryGet(Microsoft.Xrm.Sdk.Entity,System.String,T)
+FNDA:4,T FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::TryGet(Microsoft.Xrm.Sdk.Entity,System.String,T)
+DA:203,4
+DA:204,2
+DA:205,2
+BRDA:203,1,0,4
+BRDA:203,10,0,3
+BRDA:203,26,0,2
+BRDA:203,1,1,2
+BRDA:203,10,1,2
+BRDA:203,26,1,2
+FN:218,System.Threading.Tasks.Task`1<T> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::TryGetAsync(Microsoft.Xrm.Sdk.Entity,System.String,T,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<T> FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::TryGetAsync(Microsoft.Xrm.Sdk.Entity,System.String,T,System.Threading.CancellationToken)
+DA:219,0
+FN:228,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ShallowClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
+FNDA:0,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::ShallowClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
 DA:229,0
 DA:230,0
 DA:231,0
@@ -116,15 +125,15 @@ DA:238,0
 DA:239,0
 DA:240,0
 DA:241,0
+DA:242,0
 DA:243,0
-DA:244,0
 DA:245,0
-FN:257,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.DynamicsExtensions::DeepClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
-FNDA:12,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.DynamicsExtensions::DeepClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
-DA:258,12
-DA:259,1
-DA:261,11
-DA:262,11
+DA:246,0
+DA:247,0
+FN:259,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
+FNDA:12,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepClone(Microsoft.Xrm.Sdk.Query.QueryExpression)
+DA:260,12
+DA:261,1
 DA:263,11
 DA:264,11
 DA:265,11
@@ -134,82 +143,82 @@ DA:268,11
 DA:269,11
 DA:270,11
 DA:271,11
-DA:274,11
+DA:272,11
+DA:273,11
 DA:276,11
-DA:277,11
-DA:279,0
-DA:283,11
-DA:288,11
+DA:278,11
+DA:279,11
+DA:281,0
+DA:285,11
 DA:290,11
-DA:294,11
+DA:292,11
 DA:296,11
-DA:297,11
 DA:298,11
 DA:299,11
 DA:300,11
 DA:301,11
 DA:302,11
-DA:306,11
-DA:308,1
-DA:312,28
-DA:314,3
-DA:318,26
-DA:320,2
-DA:323,11
-BRDA:258,1,0,1
-BRDA:258,1,1,11
-BRDA:274,113,0,11
-BRDA:277,137,0,0
-BRDA:277,137,1,11
-BRDA:274,113,1,11
-BRDA:288,186,0,11
-BRDA:288,186,1,11
-BRDA:294,211,0,11
-BRDA:294,211,1,11
-BRDA:306,298,0,1
-BRDA:306,298,1,11
-BRDA:312,361,1,3
-BRDA:312,361,0,11
-BRDA:318,433,1,2
-BRDA:318,433,0,11
-FN:330,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.DynamicsExtensions::DeepCloneFilterExpression(Microsoft.Xrm.Sdk.Query.FilterExpression)
-FNDA:15,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.DynamicsExtensions::DeepCloneFilterExpression(Microsoft.Xrm.Sdk.Query.FilterExpression)
-DA:331,15
-DA:332,0
-DA:334,15
-DA:335,15
+DA:303,11
+DA:304,11
+DA:308,11
+DA:310,1
+DA:314,28
+DA:316,3
+DA:320,26
+DA:322,2
+DA:325,11
+BRDA:260,1,0,1
+BRDA:260,1,1,11
+BRDA:276,113,0,11
+BRDA:279,137,0,0
+BRDA:279,137,1,11
+BRDA:276,113,1,11
+BRDA:290,186,0,11
+BRDA:290,186,1,11
+BRDA:296,211,0,11
+BRDA:296,211,1,11
+BRDA:308,298,0,1
+BRDA:308,298,1,11
+BRDA:314,361,1,3
+BRDA:314,361,0,11
+BRDA:320,433,1,2
+BRDA:320,433,0,11
+FN:332,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepCloneFilterExpression(Microsoft.Xrm.Sdk.Query.FilterExpression)
+FNDA:15,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepCloneFilterExpression(Microsoft.Xrm.Sdk.Query.FilterExpression)
+DA:333,15
+DA:334,0
 DA:336,15
 DA:337,15
 DA:338,15
-DA:341,38
-DA:343,4
-DA:344,4
+DA:339,15
+DA:340,15
+DA:343,38
 DA:345,4
 DA:346,4
 DA:347,4
 DA:348,4
-DA:351,4
+DA:349,4
+DA:350,4
 DA:353,4
-DA:356,4
-DA:360,30
-DA:362,0
-DA:365,15
-BRDA:331,1,0,0
-BRDA:331,1,1,15
-BRDA:341,155,1,4
-BRDA:351,104,0,4
-BRDA:351,118,0,4
-BRDA:351,104,1,4
-BRDA:351,118,1,4
-BRDA:341,155,0,15
-BRDA:360,218,1,0
-BRDA:360,218,0,15
-FN:372,Microsoft.Xrm.Sdk.Query.LinkEntity FluentDynamics.QueryBuilder.DynamicsExtensions::DeepCloneLinkEntity(Microsoft.Xrm.Sdk.Query.LinkEntity)
-FNDA:4,Microsoft.Xrm.Sdk.Query.LinkEntity FluentDynamics.QueryBuilder.DynamicsExtensions::DeepCloneLinkEntity(Microsoft.Xrm.Sdk.Query.LinkEntity)
-DA:373,4
-DA:374,0
-DA:376,4
-DA:377,4
+DA:355,4
+DA:358,4
+DA:362,30
+DA:364,0
+DA:367,15
+BRDA:333,1,0,0
+BRDA:333,1,1,15
+BRDA:343,155,1,4
+BRDA:353,104,0,4
+BRDA:353,118,0,4
+BRDA:353,104,1,4
+BRDA:353,118,1,4
+BRDA:343,155,0,15
+BRDA:362,218,1,0
+BRDA:362,218,0,15
+FN:374,Microsoft.Xrm.Sdk.Query.LinkEntity FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepCloneLinkEntity(Microsoft.Xrm.Sdk.Query.LinkEntity)
+FNDA:4,Microsoft.Xrm.Sdk.Query.LinkEntity FluentDynamics.QueryBuilder.Extensions.DynamicsExtensions::DeepCloneLinkEntity(Microsoft.Xrm.Sdk.Query.LinkEntity)
+DA:375,4
+DA:376,0
 DA:378,4
 DA:379,4
 DA:380,4
@@ -218,30 +227,32 @@ DA:382,4
 DA:383,4
 DA:384,4
 DA:385,4
-DA:388,4
+DA:386,4
+DA:387,4
 DA:390,4
-DA:391,4
-DA:393,0
-DA:397,4
-DA:402,4
+DA:392,4
+DA:393,4
+DA:395,0
+DA:399,4
 DA:404,4
-DA:408,8
-DA:410,0
-DA:414,10
-DA:416,1
-DA:419,4
-BRDA:373,1,0,0
-BRDA:373,1,1,4
-BRDA:388,101,0,4
-BRDA:391,125,0,0
-BRDA:391,125,1,4
-BRDA:388,101,1,4
-BRDA:402,174,0,4
-BRDA:402,174,1,4
-BRDA:408,248,1,0
-BRDA:408,248,0,4
-BRDA:414,308,1,1
-BRDA:414,308,0,4
+DA:406,4
+DA:410,8
+DA:412,0
+DA:416,10
+DA:418,1
+DA:421,4
+BRDA:375,1,0,0
+BRDA:375,1,1,4
+BRDA:390,101,0,4
+BRDA:393,125,0,0
+BRDA:393,125,1,4
+BRDA:390,101,1,4
+BRDA:404,174,0,4
+BRDA:404,174,1,4
+BRDA:410,248,1,0
+BRDA:410,248,0,4
+BRDA:416,308,1,1
+BRDA:416,308,0,4
 LF:119
 LH:84
 BRF:82
@@ -249,35 +260,304 @@ BRH:48
 FNF:21
 FNH:9
 end_of_record
-SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\FilterBuilder.cs
-FN:33,FluentDynamics.QueryBuilder.FilterBuilder FluentDynamics.QueryBuilder.FilterBuilder::Condition(System.String,Microsoft.Xrm.Sdk.Query.ConditionOperator,System.Object)
-FNDA:18,FluentDynamics.QueryBuilder.FilterBuilder FluentDynamics.QueryBuilder.FilterBuilder::Condition(System.String,Microsoft.Xrm.Sdk.Query.ConditionOperator,System.Object)
-DA:34,18
-DA:35,2
-DA:37,16
-DA:39,18
-BRDA:34,1,0,2
-BRDA:34,1,1,16
-FN:48,FluentDynamics.QueryBuilder.FilterBuilder FluentDynamics.QueryBuilder.FilterBuilder::And(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-FNDA:3,FluentDynamics.QueryBuilder.FilterBuilder FluentDynamics.QueryBuilder.FilterBuilder::And(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-DA:49,3
-DA:50,3
-DA:51,3
-DA:52,3
-FN:61,FluentDynamics.QueryBuilder.FilterBuilder FluentDynamics.QueryBuilder.FilterBuilder::Or(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-FNDA:3,FluentDynamics.QueryBuilder.FilterBuilder FluentDynamics.QueryBuilder.FilterBuilder::Or(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-DA:62,3
-DA:63,3
+SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Extensions\FilterBuilderExtensions.cs
+FN:17,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Equal(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+FNDA:9,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Equal(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+DA:18,9
+FN:23,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+DA:24,1
+FN:29,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::GreaterThan(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+FNDA:5,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::GreaterThan(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+DA:30,5
+FN:35,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LessThan(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LessThan(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+DA:36,1
+FN:41,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::GreaterEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::GreaterEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+DA:42,1
+FN:47,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LessEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LessEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object)
+DA:48,1
+FN:57,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::IsNull(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::IsNull(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:58,1
+FN:63,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::IsNotNull(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:3,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::IsNotNull(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
 DA:64,3
-DA:65,3
-FN:71,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.FilterBuilder::ToExpression()
-FNDA:9,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.FilterBuilder::ToExpression()
-DA:72,9
-FN:19,System.Void FluentDynamics.QueryBuilder.FilterBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LogicalOperator)
-FNDA:15,System.Void FluentDynamics.QueryBuilder.FilterBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LogicalOperator)
-DA:20,15
-DA:22,15
-DA:23,15
+FN:73,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Like(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:3,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Like(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:74,3
+FN:79,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotLike(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotLike(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:80,1
+FN:85,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::BeginsWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::BeginsWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:86,2
+FN:91,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotBeginWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotBeginWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:92,1
+FN:97,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EndsWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EndsWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:98,1
+FN:103,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotEndWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotEndWith(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:104,1
+FN:109,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Contains(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Contains(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:110,1
+FN:115,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotContain(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotContain(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.String)
+DA:116,1
+FN:125,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::In(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object[])
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::In(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object[])
+DA:126,2
+FN:131,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotIn(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object[])
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotIn(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object[])
+DA:132,1
+FN:137,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Between(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object,System.Object)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Between(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object,System.Object)
+DA:138,2
+FN:143,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotBetween(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object,System.Object)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotBetween(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Object,System.Object)
+DA:144,1
+FN:149,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ContainValues(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32[])
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ContainValues(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32[])
+DA:150,1
+FN:155,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotContainValues(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32[])
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::DoesNotContainValues(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32[])
+DA:156,1
+FN:165,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::On(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::On(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+DA:166,1
+FN:171,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotOn(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotOn(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+DA:172,1
+FN:177,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OnOrBefore(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OnOrBefore(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+DA:178,1
+FN:183,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OnOrAfter(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OnOrAfter(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.DateTime)
+DA:184,2
+FN:193,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Yesterday(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Yesterday(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:194,1
+FN:199,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Today(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Today(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:200,2
+FN:205,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Tomorrow(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Tomorrow(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:206,1
+FN:211,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Last7Days(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Last7Days(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:212,1
+FN:217,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Next7Days(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Next7Days(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:218,1
+FN:223,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastWeek(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastWeek(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:224,1
+FN:229,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisWeek(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisWeek(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:230,1
+FN:235,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextWeek(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextWeek(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:236,1
+FN:241,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastMonth(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastMonth(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:242,1
+FN:247,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisMonth(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisMonth(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:248,1
+FN:253,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextMonth(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextMonth(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:254,1
+FN:259,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:260,1
+FN:265,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:266,1
+FN:271,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:272,1
+FN:281,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXHours(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXHours(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:282,1
+FN:287,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXHours(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXHours(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:288,1
+FN:293,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXDays(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXDays(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:294,2
+FN:299,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXDays(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXDays(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:300,1
+FN:305,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXWeeks(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXWeeks(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:306,1
+FN:311,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXWeeks(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXWeeks(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:312,1
+FN:317,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXMonths(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXMonths(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:318,1
+FN:323,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXMonths(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXMonths(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:324,2
+FN:329,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:330,1
+FN:335,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:336,1
+FN:341,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXMinutes(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXMinutes(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:342,1
+FN:347,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXHours(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXHours(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:348,1
+FN:353,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXDays(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXDays(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:354,2
+FN:359,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXWeeks(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXWeeks(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:360,1
+FN:365,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXMonths(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXMonths(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:366,1
+FN:371,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::OlderThanXYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:372,1
+FN:381,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:382,2
+FN:387,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::ThisFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:388,1
+FN:393,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:394,1
+FN:399,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:400,1
+FN:405,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:406,1
+FN:411,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:412,1
+FN:421,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXFiscalYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXFiscalYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:422,1
+FN:427,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXFiscalPeriods(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::LastXFiscalPeriods(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:428,1
+FN:433,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXFiscalYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXFiscalYears(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:434,1
+FN:439,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXFiscalPeriods(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NextXFiscalPeriods(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:440,1
+FN:445,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InFiscalYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:446,1
+FN:451,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InFiscalPeriod(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:452,1
+FN:457,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InFiscalPeriodAndYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InFiscalPeriodAndYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32,System.Int32)
+DA:458,1
+FN:463,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InOrBeforeFiscalPeriodAndYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InOrBeforeFiscalPeriodAndYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32,System.Int32)
+DA:464,1
+FN:469,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InOrAfterFiscalPeriodAndYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::InOrAfterFiscalPeriodAndYear(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32,System.Int32)
+DA:470,1
+FN:479,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:480,1
+FN:485,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotEqualUserId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotEqualUserId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:486,1
+FN:491,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserTeams(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserTeams(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:492,1
+FN:497,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserOrUserTeams(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserOrUserTeams(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:498,1
+FN:503,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserOrUserHierarchy(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserOrUserHierarchy(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:504,2
+FN:509,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserOrUserHierarchyAndTeams(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserOrUserHierarchyAndTeams(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:510,1
+FN:515,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualBusinessId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualBusinessId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:516,1
+FN:521,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotEqualBusinessId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotEqualBusinessId(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:522,1
+FN:527,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserLanguage(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::EqualUserLanguage(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String)
+DA:528,1
+FN:537,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Under(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Under(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+DA:538,2
+FN:543,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotUnder(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotUnder(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+DA:544,1
+FN:549,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::UnderOrEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+FNDA:2,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::UnderOrEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+DA:550,2
+FN:555,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Above(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Above(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+DA:556,1
+FN:561,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::AboveOrEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::AboveOrEqual(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Guid)
+DA:562,1
+FN:571,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Mask(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::Mask(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:572,1
+FN:577,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotMask(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+FNDA:1,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Extensions.FilterBuilderExtensions::NotMask(FluentDynamics.QueryBuilder.Builders.FilterBuilder,System.String,System.Int32)
+DA:578,1
+LF:87
+LH:87
+BRF:0
+BRH:0
+FNF:87
+FNH:87
+end_of_record
+SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Builders\FilterBuilder.cs
+FN:33,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Builders.FilterBuilder::Condition(System.String,Microsoft.Xrm.Sdk.Query.ConditionOperator,System.Object)
+FNDA:141,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Builders.FilterBuilder::Condition(System.String,Microsoft.Xrm.Sdk.Query.ConditionOperator,System.Object)
+DA:34,141
+DA:35,38
+DA:37,103
+DA:39,141
+BRDA:34,1,0,38
+BRDA:34,1,1,103
+FN:48,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Builders.FilterBuilder::And(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+FNDA:10,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Builders.FilterBuilder::And(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+DA:49,10
+DA:50,10
+DA:51,10
+DA:52,10
+FN:61,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Builders.FilterBuilder::Or(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+FNDA:10,FluentDynamics.QueryBuilder.Builders.FilterBuilder FluentDynamics.QueryBuilder.Builders.FilterBuilder::Or(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+DA:62,10
+DA:63,10
+DA:64,10
+DA:65,10
+FN:71,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.Builders.FilterBuilder::ToExpression()
+FNDA:108,Microsoft.Xrm.Sdk.Query.FilterExpression FluentDynamics.QueryBuilder.Builders.FilterBuilder::ToExpression()
+DA:72,108
+FN:19,System.Void FluentDynamics.QueryBuilder.Builders.FilterBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LogicalOperator)
+FNDA:128,System.Void FluentDynamics.QueryBuilder.Builders.FilterBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LogicalOperator)
+DA:20,128
+DA:22,128
+DA:23,128
 LF:16
 LH:16
 BRF:2
@@ -285,179 +565,169 @@ BRH:2
 FNF:5
 FNH:5
 end_of_record
-SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\LinkEntityBuilder.cs
-FN:28,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::Select(System.String[])
-FNDA:8,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::Select(System.String[])
-DA:29,8
-DA:30,8
-FN:38,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::SelectAll()
-FNDA:1,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::SelectAll()
-DA:39,1
-DA:40,1
-FN:49,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::As(System.String)
-FNDA:6,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::As(System.String)
-DA:50,6
-DA:51,6
-FN:60,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::ForceSeek(System.String)
-FNDA:2,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::ForceSeek(System.String)
-DA:61,2
-DA:62,2
-FN:72,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
-FNDA:3,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
-DA:73,3
+SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Builders\LinkEntityBuilder.cs
+FN:28,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::Select(System.String[])
+FNDA:13,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::Select(System.String[])
+DA:29,13
+DA:30,13
+DA:31,13
+FN:39,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::SelectAll()
+FNDA:2,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::SelectAll()
+DA:40,2
+DA:41,2
+FN:50,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::As(System.String)
+FNDA:10,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::As(System.String)
+DA:51,10
+DA:52,10
+FN:61,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::ForceSeek(System.String)
+FNDA:4,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::ForceSeek(System.String)
+DA:62,4
+DA:63,4
+FN:73,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
+FNDA:3,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
 DA:74,3
-FN:84,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-FNDA:5,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-DA:85,5
-DA:86,5
-DA:87,5
-DA:88,5
-FN:106,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.LinkEntityBuilder>)
-FNDA:4,FluentDynamics.QueryBuilder.LinkEntityBuilder FluentDynamics.QueryBuilder.LinkEntityBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.LinkEntityBuilder>)
-DA:107,4
-DA:108,4
-DA:109,4
-DA:110,4
-DA:111,4
-FN:16,System.Void FluentDynamics.QueryBuilder.LinkEntityBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LinkEntity)
-FNDA:19,System.Void FluentDynamics.QueryBuilder.LinkEntityBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LinkEntity)
-DA:17,19
-DA:19,19
-DA:20,19
-LF:22
-LH:22
+DA:75,3
+FN:85,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+FNDA:6,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+DA:86,6
+DA:87,6
+DA:88,6
+DA:89,6
+FN:107,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder>)
+FNDA:7,FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder>)
+DA:108,7
+DA:109,7
+DA:110,7
+DA:111,7
+DA:112,7
+FN:16,System.Void FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LinkEntity)
+FNDA:28,System.Void FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder::.ctor(Microsoft.Xrm.Sdk.Query.LinkEntity)
+DA:17,28
+DA:19,28
+DA:20,28
+LF:23
+LH:23
 BRF:0
 BRH:0
 FNF:8
 FNH:8
 end_of_record
-SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Query.cs
-FN:15,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.Query::For(System.String)
-FNDA:35,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.Query::For(System.String)
-DA:16,35
-LF:1
-LH:1
-BRF:0
-BRH:0
-FNF:1
-FNH:1
-end_of_record
-SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\QueryExpressionBuilder.cs
-FN:35,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Select(System.String[])
-FNDA:11,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Select(System.String[])
-DA:36,11
-DA:37,11
-DA:38,11
-FN:46,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::SelectAll()
-FNDA:3,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::SelectAll()
-DA:47,3
+SF:C:\Users\ulas.erkus\source\repos\fluent-dynamics\FluentDynamics.QueryBuilder\Builders\QueryExpressionBuilder.cs
+FN:36,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Select(System.String[])
+FNDA:13,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Select(System.String[])
+DA:37,13
+DA:38,13
+DA:39,13
+FN:47,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::SelectAll()
+FNDA:3,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::SelectAll()
 DA:48,3
-FN:57,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::QueryHint(System.String)
-FNDA:0,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::QueryHint(System.String)
-DA:58,0
+DA:49,3
+FN:58,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::QueryHint(System.String)
+FNDA:0,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::QueryHint(System.String)
 DA:59,0
-FN:68,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::ForceSeek(System.String)
-FNDA:0,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::ForceSeek(System.String)
-DA:69,0
+DA:60,0
+FN:69,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::ForceSeek(System.String)
+FNDA:0,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::ForceSeek(System.String)
 DA:70,0
-FN:78,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Distinct()
-FNDA:0,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Distinct()
-DA:79,0
-DA:80,0
-FN:88,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::NoLock()
-FNDA:0,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::NoLock()
-DA:89,0
-DA:90,0
-FN:100,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-FNDA:3,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.FilterBuilder>)
-DA:101,3
-DA:102,3
-DA:103,3
-DA:104,3
-FN:114,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
-FNDA:3,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
-DA:115,3
-DA:116,3
-FN:125,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Top(System.Int32)
-FNDA:4,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Top(System.Int32)
-DA:126,4
+DA:71,0
+FN:79,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Distinct()
+FNDA:1,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Distinct()
+DA:80,1
+DA:81,1
+FN:89,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::NoLock()
+FNDA:1,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::NoLock()
+DA:90,1
+DA:91,1
+FN:101,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+FNDA:4,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Where(System.Action`1<FluentDynamics.QueryBuilder.Builders.FilterBuilder>)
+DA:102,4
+DA:103,4
+DA:104,4
+DA:105,4
+FN:115,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
+FNDA:5,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::OrderBy(System.String,Microsoft.Xrm.Sdk.Query.OrderType)
+DA:116,5
+DA:117,5
+FN:126,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Top(System.Int32)
+FNDA:4,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Top(System.Int32)
 DA:127,4
-FN:145,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.LinkEntityBuilder>)
-FNDA:15,FluentDynamics.QueryBuilder.QueryExpressionBuilder FluentDynamics.QueryBuilder.QueryExpressionBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.LinkEntityBuilder>)
-DA:146,15
-DA:147,15
-DA:148,15
-DA:149,15
-DA:150,15
-FN:159,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService)
-FNDA:0,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService)
-DA:160,0
-FN:171,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32)
-FNDA:0,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32)
-DA:172,0
+DA:128,4
+FN:146,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder>)
+FNDA:21,FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::Link(System.String,System.String,System.String,Microsoft.Xrm.Sdk.Query.JoinOperator,System.Action`1<FluentDynamics.QueryBuilder.Builders.LinkEntityBuilder>)
+DA:147,21
+DA:148,21
+DA:149,21
+DA:150,21
+DA:151,21
+FN:160,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService)
+FNDA:2,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService)
+DA:161,2
+FN:172,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32)
+FNDA:0,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32)
 DA:173,0
 DA:174,0
 DA:175,0
 DA:176,0
 DA:177,0
 DA:178,0
-FN:187,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAllPages(Microsoft.Xrm.Sdk.IOrganizationService)
-FNDA:1,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAllPages(Microsoft.Xrm.Sdk.IOrganizationService)
-DA:188,1
+DA:179,0
+FN:188,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAllPages(Microsoft.Xrm.Sdk.IOrganizationService)
+FNDA:1,Microsoft.Xrm.Sdk.EntityCollection FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAllPages(Microsoft.Xrm.Sdk.IOrganizationService)
 DA:189,1
 DA:190,1
 DA:191,1
-DA:193,1
-DA:197,2
+DA:192,1
+DA:194,1
 DA:198,2
 DA:199,2
 DA:200,2
 DA:201,2
 DA:202,2
-DA:204,2
-DA:206,2
+DA:203,2
+DA:205,2
 DA:207,2
-DA:209,2
+DA:208,2
 DA:210,2
 DA:211,2
-DA:213,2
-DA:215,1
-BRDA:213,128,1,2
-BRDA:206,85,0,2
-BRDA:206,85,1,2
-BRDA:213,128,0,1
-FN:225,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
-DA:226,0
-FN:238,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32,System.Threading.CancellationToken)
-DA:239,0
-FN:249,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAllPagesAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
-FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.QueryExpressionBuilder::RetrieveMultipleAllPagesAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
-DA:250,0
-FN:256,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.QueryExpressionBuilder::ToQueryExpression()
-FNDA:34,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.QueryExpressionBuilder::ToQueryExpression()
-DA:257,34
-FN:265,Microsoft.Xrm.Sdk.Query.FetchExpression FluentDynamics.QueryBuilder.QueryExpressionBuilder::ToFetchExpression(Microsoft.Xrm.Sdk.IOrganizationService)
-FNDA:1,Microsoft.Xrm.Sdk.Query.FetchExpression FluentDynamics.QueryBuilder.QueryExpressionBuilder::ToFetchExpression(Microsoft.Xrm.Sdk.IOrganizationService)
-DA:266,1
+DA:212,2
+DA:214,2
+DA:216,1
+BRDA:214,128,1,2
+BRDA:207,85,0,2
+BRDA:207,85,1,2
+BRDA:214,128,0,1
+FN:226,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
+DA:227,0
+FN:239,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Int32,System.Int32,System.Threading.CancellationToken)
+DA:240,0
+FN:250,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAllPagesAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
+FNDA:0,System.Threading.Tasks.Task`1<Microsoft.Xrm.Sdk.EntityCollection> FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::RetrieveMultipleAllPagesAsync(Microsoft.Xrm.Sdk.IOrganizationService,System.Threading.CancellationToken)
+DA:251,0
+FN:257,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::ToQueryExpression()
+FNDA:45,Microsoft.Xrm.Sdk.Query.QueryExpression FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::ToQueryExpression()
+DA:258,45
+FN:266,Microsoft.Xrm.Sdk.Query.FetchExpression FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::ToFetchExpression(Microsoft.Xrm.Sdk.IOrganizationService)
+FNDA:1,Microsoft.Xrm.Sdk.Query.FetchExpression FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::ToFetchExpression(Microsoft.Xrm.Sdk.IOrganizationService)
 DA:267,1
 DA:268,1
 DA:269,1
 DA:270,1
 DA:271,1
-FN:20,System.Void FluentDynamics.QueryBuilder.QueryExpressionBuilder::.ctor(System.String)
-FNDA:36,System.Void FluentDynamics.QueryBuilder.QueryExpressionBuilder::.ctor(System.String)
-DA:21,36
-DA:23,36
-DA:24,36
-DA:25,36
-DA:26,36
-DA:27,36
+DA:272,1
+FN:21,System.Void FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::.ctor(System.String)
+FNDA:49,System.Void FluentDynamics.QueryBuilder.Builders.QueryExpressionBuilder::.ctor(System.String)
+DA:22,49
+DA:24,49
+DA:25,49
+DA:26,49
+DA:27,49
+DA:28,49
 LF:69
-LH:50
+LH:55
 BRF:4
 BRH:4
 FNF:19
-FNH:10
+FNH:13
 end_of_record
