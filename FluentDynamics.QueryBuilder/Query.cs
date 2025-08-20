@@ -1,4 +1,6 @@
-﻿namespace FluentDynamics.QueryBuilder
+﻿using FluentDynamics.QueryBuilder.Builders;
+
+namespace FluentDynamics.QueryBuilder
 {
     /// <summary>
     /// Entry point for the Dynamics 365/Dataverse fluent query API.

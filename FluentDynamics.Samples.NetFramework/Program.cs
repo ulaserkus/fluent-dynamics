@@ -1,4 +1,5 @@
 ﻿using FluentDynamics.QueryBuilder;
+using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Tooling.Connector;
@@ -27,6 +28,15 @@ namespace FluentDynamics.Samples.NetFramework
                  .OrderBy("name")
                  .Top(10);
 
+            // Using FilterExpression for the same query
+            var basicQueryWithFilterExpression = Query.For("account")
+                 .Select("name", "accountnumber", "telephone1")
+                 .Where(f => f
+                     .Equal("statecode", 0)
+                 )
+                 .OrderBy("name")
+                 .Top(10);
+
             var accountResults = await basicQuery.RetrieveMultiple(service).ToListAsync();
 
             //Complex filtering with nested conditions
@@ -47,7 +57,22 @@ namespace FluentDynamics.Samples.NetFramework
                     .OrderBy("lastname")
                     .OrderBy("firstname");
 
-            var contactResults = await complexQuery.RetrieveMultiple(service).ToListAsync();
+            // Complex filtering with nested conditions using FilterExpression
+            var complexQueryWithFilterExpression = Query.For("contact")
+            .Select("firstname", "lastname", "emailaddress1")
+                    .Where(f => f
+                        .Condition("statecode", ConditionOperator.Equal, 0)
+                        .And(fa => fa
+                            .LastXDays("createdon", 30)
+                            .IsNotNull("emailaddress1")
+                        )
+                        .Or(fo => fo
+                            .Equal("parentcustomerid", accountId)
+                            .Equal("address1_city", "Seattle")
+                        )
+                    )
+                    .OrderBy("lastname")
+                    .OrderBy("firstname");
 
             // Joining multiple entities with specific conditions and aliases
             var joiningQueryquery = Query.For("opportunity")

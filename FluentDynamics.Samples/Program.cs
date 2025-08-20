@@ -1,4 +1,5 @@
 ﻿using FluentDynamics.QueryBuilder;
+using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
@@ -19,6 +20,15 @@ var basicQuery = Query.For("account")
      .OrderBy("name")
      .Top(10);
 
+// Using FilterExpression for the same query
+var basicQueryWithFilterExpression = Query.For("account")
+     .Select("name", "accountnumber", "telephone1")
+     .Where(f => f
+         .Equal("statecode", 0)
+     )
+     .OrderBy("name")
+     .Top(10);
+
 var accountResults = await basicQuery.RetrieveMultiple(service).ToListAsync();
 
 //Complex filtering with nested conditions
@@ -34,6 +44,23 @@ var complexQuery = Query.For("contact")
             .Or(fo => fo
                 .Condition("parentcustomerid", ConditionOperator.Equal, accountId)
                 .Condition("address1_city", ConditionOperator.Equal, "Seattle")
+            )
+        )
+        .OrderBy("lastname")
+        .OrderBy("firstname");
+
+// Complex filtering with nested conditions using FilterExpression
+var complexQueryWithFilterExpression = Query.For("contact")
+.Select("firstname", "lastname", "emailaddress1")
+        .Where(f => f
+            .Condition("statecode", ConditionOperator.Equal, 0)
+            .And(fa => fa
+                .LastXDays("createdon", 30)
+                .IsNotNull("emailaddress1")
+            )
+            .Or(fo => fo
+                .Equal("parentcustomerid", accountId)
+                .Equal("address1_city", "Seattle")
             )
         )
         .OrderBy("lastname")

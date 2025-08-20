@@ -1,11 +1,12 @@
-﻿using Microsoft.Crm.Sdk.Messages;
+﻿using FluentDynamics.QueryBuilder.Extensions;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FluentDynamics.QueryBuilder
+namespace FluentDynamics.QueryBuilder.Builders
 {
     /// <summary>
     /// Fluent API builder for creating and executing Dynamics 365/Dataverse QueryExpressions
@@ -169,7 +170,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>Collection of entities for the specified page</returns>
         public EntityCollection RetrieveMultiple(IOrganizationService service, int pageNumber, int pageSize)
         {
-            var query = ((QueryExpression)_query).DeepClone();
+            var query = _query.DeepClone();
             query.PageInfo = new PagingInfo
             {
                 PageNumber = pageNumber,

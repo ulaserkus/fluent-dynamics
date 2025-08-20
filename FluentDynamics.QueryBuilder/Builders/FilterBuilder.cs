@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xrm.Sdk.Query;
 using System;
 
-namespace FluentDynamics.QueryBuilder
+namespace FluentDynamics.QueryBuilder.Builders
 {
     /// <summary>
     /// Fluent API builder for constructing nested filter groups in Dynamics 365/Dataverse queries.

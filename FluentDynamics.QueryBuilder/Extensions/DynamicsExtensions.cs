@@ -1,3 +1,5 @@
+using FluentDynamics.QueryBuilder.Builders;
+using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FluentDynamics.QueryBuilder
+namespace FluentDynamics.QueryBuilder.Extensions
 {
     /// <summary>
     /// Provides extension methods for Dynamics 365/Dataverse entities and query results.
@@ -23,7 +25,7 @@ namespace FluentDynamics.QueryBuilder
         {
             return new QueryExpressionBuilder(builder._query.EntityName)
             {
-                _query = (QueryExpression)builder._query.DeepClone()
+                _query = builder._query.DeepClone()
             };
         }
 
@@ -45,7 +47,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning a List containing the entities</returns>
         public static Task<List<Entity>> ToListAsync(this EntityCollection entities, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => ToList(entities), cancellationToken);
+            return Task.Run(() => entities.ToList(), cancellationToken);
         }
 
         /// <summary>
@@ -66,7 +68,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning an array containing the entities</returns>
         public static Task<Entity[]> ToArrayAsync(this EntityCollection entities, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => ToArray(entities), cancellationToken);
+            return Task.Run(() => entities.ToArray(), cancellationToken);
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning the first entity that satisfies the condition, or null</returns>
         public static Task<Entity> FirstOrDefaultAsync(this EntityCollection entities, Func<Entity, bool> predicate, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => FirstOrDefault(entities, predicate));
+            return Task.Run(() => entities.FirstOrDefault(predicate));
         }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning the only entity that satisfies the condition, or null</returns>
         public static Task<Entity> SingleOrDefaultAsync(this EntityCollection entities, Func<Entity, bool> predicate, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => SingleOrDefault(entities, predicate));
+            return Task.Run(() => entities.SingleOrDefault(predicate));
         }
 
         /// <summary>
@@ -137,7 +139,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning an enumerable containing entities that satisfy the condition</returns>
         public static Task<IEnumerable<Entity>> WhereAsync(this EntityCollection entities, Func<Entity, bool> predicate, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => Where(entities, predicate));
+            return Task.Run(() => entities.Where(predicate));
         }
 
         /// <summary>
@@ -162,7 +164,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning an enumerable containing the projected results</returns>
         public static Task<IEnumerable<TResult>> SelectAsync<TResult>(this EntityCollection entities, Func<Entity, TResult> selector, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => Select(entities, selector), cancellationToken);
+            return Task.Run(() => entities.Select(selector), cancellationToken);
         }
 
         /// <summary>
@@ -185,7 +187,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning a List containing the typed entities</returns>
         public static Task<List<T>> ToTypedListAsync<T>(this EntityCollection entities, CancellationToken cancellationToken = default) where T : Entity
         {
-            return Task.Run(() => ToTypedList<T>(entities), cancellationToken);
+            return Task.Run(() => entities.ToTypedList<T>(), cancellationToken);
         }
 
         /// <summary>
@@ -214,7 +216,7 @@ namespace FluentDynamics.QueryBuilder
         /// <returns>A task returning the attribute value as the specified type, or the default value</returns>
         public static Task<T> TryGetAsync<T>(this Entity entity, string attributeName, T defaultValue = default, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => TryGet<T>(entity, attributeName, defaultValue), cancellationToken);
+            return Task.Run(() => entity.TryGet(attributeName, defaultValue), cancellationToken);
         }
 
         /// <summary>
