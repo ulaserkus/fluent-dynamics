@@ -4,10 +4,10 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 
 [![NuGet](https://img.shields.io/nuget/v/FluentDynamics.QueryBuilder.svg)](https://www.nuget.org/packages/FluentDynamics.QueryBuilder/)
 [![License](https://img.shields.io/github/license/ulaserkus/fluent-dynamics)](LICENSE)
-![Line Coverage](https://img.shields.io/badge/line%20coverage-76.21%25-yellow)
+![Line Coverage](https://img.shields.io/badge/line%20coverage-84.44%25-brightgreen)
 ![Branch Coverage](https://img.shields.io/badge/branch%20coverage-61.36%25-orange)
-![Method Coverage](https://img.shields.io/badge/method%20coverage-61.11%25-orange)
-![Tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)
+![Method Coverage](https://img.shields.io/badge/method%20coverage-87.23%25-brightgreen)
+![Tests](https://img.shields.io/badge/tests-150%20passed-brightgreen)
 
 ## Features
 
@@ -20,6 +20,7 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 - 🧩 **Extensible** - Clean architecture for extending functionality
 - 🛠 **FetchXML Conversion** - Convert queries to FetchXML easily
 - 🧮 **Distinct, NoLock, QueryHint, ForceSeek** - Advanced query options
+- ⚡ **FilterBuilder Extensions** - Syntactic sugar methods for common conditions (Equal, In, Like, LastXDays, IsNull, etc.)
 
 ## Installation
 
@@ -73,6 +74,26 @@ var query = Query.For("contact")
         .Or(fo => fo
             .Condition("parentcustomerid", ConditionOperator.Equal, accountId)
             .Condition("address1_city", ConditionOperator.Equal, "Seattle")
+        )
+    )
+    .OrderBy("lastname")
+    .OrderBy("firstname");
+```
+
+### Complex Filtering Using FilterBuilder Extensions
+
+```csharp
+var query = Query.For("contact")
+    .Select("firstname", "lastname", "emailaddress1")
+    .Where(f => f
+        .Equal("statecode", 0)
+        .And(fa => fa
+            .LastXDays("createdon", 30)
+            .IsNotNull("emailaddress1")
+        )
+        .Or(fo => fo
+            .Equal("parentcustomerid", accountId)
+            .Equal("address1_city", "Seattle")
         )
     )
     .OrderBy("lastname")
@@ -149,12 +170,10 @@ string name = entity.TryGet<string>("name", "Default Name");
 ## API Reference
 
 ### Query
-
 Entry point for building queries:
 - `Query.For(entityName)` - Creates a new query for the specified entity
 
 ### QueryExpressionBuilder
-
 Methods for configuring the main query:
 - `Select(params string[] attributes)` - Specifies columns to include
 - `SelectAll()` - Includes all columns
@@ -168,62 +187,108 @@ Methods for configuring the main query:
 - `ForceSeek(indexName)` - Forces using a specific index
 
 ### Execution Methods
-
-- `RetrieveMultiple(service)` - Executes the query and returns results
-- `RetrieveMultiple(service, pageNumber, pageSize)` - Executes with pagination
-- `RetrieveMultipleAllPages(service)` - Retrieves all pages synchronously
-- `RetrieveMultipleAsync(service, CancellationToken cancellationToken = default)` - Async version
-- `RetrieveMultipleAsync(service, pageNumber, pageSize, CancellationToken cancellationToken = default)` - Async with pagination
-- `RetrieveMultipleAllPagesAsync(service, CancellationToken cancellationToken = default)` - Async all pages
-- `ToQueryExpression()` - Converts to QueryExpression
-- `ToFetchExpression(service)` - Converts to FetchXML
+- `RetrieveMultiple(service)`
+- `RetrieveMultiple(service, pageNumber, pageSize)`
+- `RetrieveMultipleAllPages(service)`
+- `RetrieveMultipleAsync(service, CancellationToken cancellationToken = default)`
+- `RetrieveMultipleAsync(service, pageNumber, pageSize, CancellationToken cancellationToken = default)`
+- `RetrieveMultipleAllPagesAsync(service, CancellationToken cancellationToken = default)`
+- `ToQueryExpression()`
+- `ToFetchExpression(service)`
 
 ### FilterBuilder
-
 Builds complex filter logic:
-- `Condition(attribute, operator, value)` - Adds a condition
-- `And(Action<FilterBuilder> nested)` - Adds a nested AND filter group
-- `Or(Action<FilterBuilder> nested)` - Adds a nested OR filter group
-- `ToExpression()` - Returns the built FilterExpression
+- `Condition(attribute, operator, value)`
+- `And(Action<FilterBuilder> nested)`
+- `Or(Action<FilterBuilder> nested)`
+- `ToExpression()`
+
+### FilterBuilder Extensions (Syntactic Sugar)
+Convenience methods mapping to common `ConditionOperator` values. They improve readability and reduce verbosity.
+
+| Extension | Purpose | Equivalent |
+|-----------|---------|-----------|
+| `Equal(attr, value)` | Equality | `Condition(attr, Equal, value)` |
+| `NotEqual(attr, value)` | Inequality | `Condition(attr, NotEqual, value)` |
+| `GreaterThan(attr, value)` | Greater than | `Condition(attr, GreaterThan, value)` |
+| `GreaterEqual(attr, value)` | Greater or equal | `Condition(attr, GreaterEqual, value)` |
+| `LessThan(attr, value)` | Less than | `Condition(attr, LessThan, value)` |
+| `LessEqual(attr, value)` | Less or equal | `Condition(attr, LessEqual, value)` |
+| `Like(attr, pattern)` | SQL-like pattern | `Condition(attr, Like, pattern)` |
+| `NotLike(attr, pattern)` | Negated like | `Condition(attr, NotLike, pattern)` |
+| `BeginsWith(attr, value)` | Prefix | `Condition(attr, BeginsWith, value)` |
+| `EndsWith(attr, value)` | Suffix | `Condition(attr, EndsWith, value)` |
+| `Contains(attr, value)` | Contains text | `Condition(attr, Contains, value)` |
+| `In(attr, params values)` | In list | `Condition(attr, In, valuesArray)` |
+| `NotIn(attr, params values)` | Not in list | `Condition(attr, NotIn, valuesArray)` |
+| `Between(attr, from, to)` | Between range | `Condition(attr, Between, new[]{from,to})` |
+| `NotBetween(attr, from, to)` | Not between | `Condition(attr, NotBetween, new[]{from,to})` |
+| `IsNull(attr)` | Null check | `Condition(attr, Null, null)` |
+| `IsNotNull(attr)` | Not null | `Condition(attr, NotNull, null)` |
+| `LastXDays(attr, days)` | Relative date | `Condition(attr, LastXDays, days)` |
+| `NextXDays(attr, days)` | Relative date | `Condition(attr, NextXDays, days)` |
+| `LastXMonths(attr, months)` | Relative date | `Condition(attr, LastXMonths, months)` |
+| `NextXMonths(attr, months)` | Relative date | `Condition(attr, NextXMonths, months)` |
+| `LastXYears(attr, years)` | Relative date | `Condition(attr, LastXYears, years)` |
+| `NextXYears(attr, years)` | Relative date | `Condition(attr, NextXYears, years)` |
+| `On(attr, date)` | Specific date | `Condition(attr, On, date)` |
+| `OnOrBefore(attr, date)` | On or before | `Condition(attr, OnOrBefore, date)` |
+| `OnOrAfter(attr, date)` | On or after | `Condition(attr, OnOrAfter, date)` |
+
+Example:
+
+```csharp
+var q = Query.For("contact")
+    .Select("firstname", "lastname", "emailaddress1", "createdon")
+    .Where(f => f
+        .Equal("statecode", 0)
+        .IsNotNull("emailaddress1")
+        .LastXDays("createdon", 30)
+        .Or(o => o
+            .Like("emailaddress1", "%@example.com")
+            .In("address1_city", "Seattle", "London", "Berlin")
+        )
+    );
+```
 
 ### LinkEntityBuilder
-
 Configures join/link entities:
-- `Select(params string[] attributes)` - Specifies columns to include from the linked entity
-- `SelectAll()` - Includes all columns from the linked entity
-- `As(alias)` - Sets an alias for the linked entity
-- `OrderBy(attribute, [orderType])` - Adds sort order to the linked entity
-- `Where(Action<FilterBuilder> filterConfig)` - Configures link entity filters using a FilterBuilder
-- `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)` - Adds a nested link-entity (join)
+- `Select(params string[] attributes)`
+- `SelectAll()`
+- `As(alias)`
+- `OrderBy(attribute, [orderType])`
+- `Where(Action<FilterBuilder> filterConfig)`
+- `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)`
 
 ### Extension Methods (LINQ-like)
+- `ToList()` / `ToArray()`
+- `FirstOrDefault(predicate)`
+- `SingleOrDefault(predicate)`
+- `Where(predicate)`
+- `Select(selector)`
+- `TryGet<T>(attributeName, defaultValue)`
+- `DeepClone()`
 
-- `ToList()` / `ToArray()` - Convert results to collection types
-- `FirstOrDefault(predicate)` - Returns first matching entity
-- `SingleOrDefault(predicate)` - Returns single matching entity
-- `Where(predicate)` - Filters entities
-- `Select(selector)` - Projects entities to new form
-- `TryGet<T>(attributeName, defaultValue)` - Safely gets attribute value
-- `DeepClone()` - Deep clone of a query builder instance
 ---
 
 ### Module Coverage
 | Module | Line | Branch | Method |
 |--------|------|--------|--------|
-| FluentDynamics.QueryBuilder | 76.21% | 61.36% | 61.11% |
+| FluentDynamics.QueryBuilder | 84.44% | 61.36% | 87.23% |
 
 ### Overall Coverage
 | Metric | Line | Branch | Method |
 |--------|------|--------|--------|
-| Total | 76.21% | 61.36% | 61.11% |
-| Average | 76.2% | 61.36% | 61.11% |
+| Total | 84.44% | 61.36% | 87.23% |
+| Average | 84.44% | 61.36% | 87.23% |
 
 ### Test Summary
-- Total Tests: 40
+- Total Tests: 150
 - Failed: 0
-- Succeeded: 40
+- Succeeded: 150
 - Skipped: 0
-- Duration: 2.5s
+- Duration: 1.5s
+
 ---
 
 ## License
