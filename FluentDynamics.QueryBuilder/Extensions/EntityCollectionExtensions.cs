@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace FluentDynamics.QueryBuilder.Extensions
 {
@@ -23,17 +21,6 @@ namespace FluentDynamics.QueryBuilder.Extensions
         }
 
         /// <summary>
-        /// Asynchronously converts an EntityCollection to a List of Entity objects
-        /// </summary>
-        /// <param name="entities">The entity collection to convert</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning a List containing the entities</returns>
-        public static Task<List<Entity>> ToListAsync(this EntityCollection entities, CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => entities.ToList(), cancellationToken);
-        }
-
-        /// <summary>
         /// Converts an EntityCollection to an array of Entity objects
         /// </summary>
         /// <param name="entities">The entity collection to convert</param>
@@ -44,89 +31,60 @@ namespace FluentDynamics.QueryBuilder.Extensions
         }
 
         /// <summary>
-        /// Asynchronously converts an EntityCollection to an array of Entity objects
-        /// </summary>
-        /// <param name="entities">The entity collection to convert</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning an array containing the entities</returns>
-        public static Task<Entity[]> ToArrayAsync(this EntityCollection entities, CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => entities.ToArray(), cancellationToken);
-        }
-
-        /// <summary>
-        /// Returns the first entity that satisfies a condition or null if no such entity is found
+        /// Returns the first entity that satisfies a condition or null if no such entity is found.
+        /// If predicate is null, returns the first entity in the collection.
         /// </summary>
         /// <param name="entities">The entity collection to search</param>
-        /// <param name="predicate">A function to test each entity for a condition</param>
+        /// <param name="predicate">A function to test each entity for a condition, or null to return the first entity</param>
         /// <returns>The first entity that satisfies the condition, or null</returns>
-        public static Entity FirstOrDefault(this EntityCollection entities, Func<Entity, bool> predicate)
+        public static Entity? FirstOrDefault(this EntityCollection entities, Func<Entity, bool>? predicate = null)
         {
-            return entities?.Entities?.FirstOrDefault(predicate);
+            if (entities?.Entities == null)
+                return null;
+
+            return predicate == null
+                ? entities.Entities.FirstOrDefault()
+                : entities.Entities.FirstOrDefault(predicate);
         }
 
         /// <summary>
-        /// Asynchronously returns the first entity that satisfies a condition or null if no such entity is found
+        /// Returns the only entity that satisfies a condition or null if no such entity is found.
+        /// Throws an exception if more than one entity satisfies the condition.
+        /// If predicate is null, returns the only entity in the collection or null if empty or multiple entities exist.
         /// </summary>
         /// <param name="entities">The entity collection to search</param>
-        /// <param name="predicate">A function to test each entity for a condition</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning the first entity that satisfies the condition, or null</returns>
-        public static Task<Entity> FirstOrDefaultAsync(this EntityCollection entities, Func<Entity, bool> predicate, CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => entities.FirstOrDefault(predicate));
-        }
-
-        /// <summary>
-        /// Returns the only entity that satisfies a condition or null if no such entity is found
-        /// Throws an exception if more than one entity satisfies the condition
-        /// </summary>
-        /// <param name="entities">The entity collection to search</param>
-        /// <param name="predicate">A function to test each entity for a condition</param>
+        /// <param name="predicate">A function to test each entity for a condition, or null to check if collection has exactly one entity</param>
         /// <returns>The only entity that satisfies the condition, or null</returns>
-        public static Entity SingleOrDefault(this EntityCollection entities, Func<Entity, bool> predicate)
+        public static Entity? SingleOrDefault(this EntityCollection entities, Func<Entity, bool>? predicate = null)
         {
-            return entities?.Entities?.SingleOrDefault(predicate);
+            if (entities?.Entities == null)
+                return null;
+
+            return predicate == null
+                ? entities.Entities.SingleOrDefault()
+                : entities.Entities.SingleOrDefault(predicate);
         }
 
         /// <summary>
-        /// Asynchronously returns the only entity that satisfies a condition or null if no such entity is found
-        /// Throws an exception if more than one entity satisfies the condition
-        /// </summary>
-        /// <param name="entities">The entity collection to search</param>
-        /// <param name="predicate">A function to test each entity for a condition</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning the only entity that satisfies the condition, or null</returns>
-        public static Task<Entity> SingleOrDefaultAsync(this EntityCollection entities, Func<Entity, bool> predicate, CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => entities.SingleOrDefault(predicate));
-        }
-
-        /// <summary>
-        /// Filters entities based on a predicate
+        /// Filters entities based on a predicate.
+        /// If predicate is null, returns all entities.
         /// </summary>
         /// <param name="entities">The entity collection to filter</param>
-        /// <param name="predicate">A function to test each entity for a condition</param>
+        /// <param name="predicate">A function to test each entity for a condition, or null to return all entities</param>
         /// <returns>An enumerable containing entities that satisfy the condition</returns>
-        public static IEnumerable<Entity> Where(this EntityCollection entities, Func<Entity, bool> predicate)
+        public static IEnumerable<Entity> Where(this EntityCollection entities, Func<Entity, bool>? predicate = null)
         {
-            return entities?.Entities?.Where(predicate) ?? Enumerable.Empty<Entity>();
+            if (entities?.Entities == null)
+                return Enumerable.Empty<Entity>();
+
+            return predicate == null
+                ? entities.Entities
+                : entities.Entities.Where(predicate);
         }
 
         /// <summary>
-        /// Asynchronously filters entities based on a predicate
-        /// </summary>
-        /// <param name="entities">The entity collection to filter</param>
-        /// <param name="predicate">A function to test each entity for a condition</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning an enumerable containing entities that satisfy the condition</returns>
-        public static Task<IEnumerable<Entity>> WhereAsync(this EntityCollection entities, Func<Entity, bool> predicate, CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => entities.Where(predicate));
-        }
-
-        /// <summary>
-        /// Projects each entity in a collection into a new form
+        /// Projects each entity in a collection into a new form.
+        /// If selector is null, throws ArgumentNullException.
         /// </summary>
         /// <typeparam name="TResult">The type of the value returned by the selector</typeparam>
         /// <param name="entities">The entity collection to project</param>
@@ -134,20 +92,10 @@ namespace FluentDynamics.QueryBuilder.Extensions
         /// <returns>An enumerable containing the projected results</returns>
         public static IEnumerable<TResult> Select<TResult>(this EntityCollection entities, Func<Entity, TResult> selector)
         {
-            return entities?.Entities?.Select(selector) ?? Enumerable.Empty<TResult>();
-        }
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector), "Transform function cannot be null");
 
-        /// <summary>
-        /// Asynchronously projects each entity in a collection into a new form
-        /// </summary>
-        /// <typeparam name="TResult">The type of the value returned by the selector</typeparam>
-        /// <param name="entities">The entity collection to project</param>
-        /// <param name="selector">A transform function to apply to each entity</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning an enumerable containing the projected results</returns>
-        public static Task<IEnumerable<TResult>> SelectAsync<TResult>(this EntityCollection entities, Func<Entity, TResult> selector, CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => entities.Select(selector), cancellationToken);
+            return entities?.Entities?.Select(selector) ?? Enumerable.Empty<TResult>();
         }
 
         /// <summary>
@@ -159,18 +107,6 @@ namespace FluentDynamics.QueryBuilder.Extensions
         public static List<T> ToTypedList<T>(this EntityCollection entities) where T : Entity
         {
             return entities?.Entities?.OfType<T>().ToList() ?? new List<T>();
-        }
-
-        /// <summary>
-        /// Asynchronously converts an EntityCollection to a List of typed entity objects
-        /// </summary>
-        /// <typeparam name="T">The specific entity type to convert to</typeparam>
-        /// <param name="entities">The entity collection to convert</param>
-        /// <param name="cancellationToken">A token to cancel the operation</param>
-        /// <returns>A task returning a List containing the typed entities</returns>
-        public static Task<List<T>> ToTypedListAsync<T>(this EntityCollection entities, CancellationToken cancellationToken = default) where T : Entity
-        {
-            return Task.Run(() => entities.ToTypedList<T>(), cancellationToken);
         }
     }
 }

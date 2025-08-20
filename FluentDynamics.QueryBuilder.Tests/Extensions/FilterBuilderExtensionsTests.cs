@@ -1,5 +1,4 @@
 ﻿using FluentDynamics.QueryBuilder.Builders;
-using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Xrm.Sdk.Query;
 using Xunit;
 

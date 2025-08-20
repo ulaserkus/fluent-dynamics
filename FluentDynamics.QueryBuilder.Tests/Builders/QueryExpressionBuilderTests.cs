@@ -289,6 +289,6 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
             Assert.NotNull(result);
             Assert.Equal(entity.Id, result.Id);
         }
-      
+
     }
 }

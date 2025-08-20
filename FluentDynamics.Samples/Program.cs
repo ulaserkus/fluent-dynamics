@@ -1,14 +1,13 @@
 ﻿using FluentDynamics.QueryBuilder;
 using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.PowerPlatform.Dataverse.Client;
-using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
 string clientId = "<client-id>";
 string clientSecret = "<client-secret>";
 Uri serviceUri = new Uri("<org-url>");
 string connectionString = $"AuthType=ClientSecret;Url={serviceUri};ClientId={clientId};ClientSecret={clientSecret};";
-IOrganizationService service = new ServiceClient(connectionString);
+IOrganizationServiceAsync2 service = new ServiceClient(connectionString);
 
 
 // Basic query to retrieve accounts with specific fields and conditions
@@ -29,7 +28,7 @@ var basicQueryWithFilterExpression = Query.For("account")
      .OrderBy("name")
      .Top(10);
 
-var accountResults = await basicQuery.RetrieveMultiple(service).ToListAsync();
+var accountResults = await basicQuery.RetrieveMultipleAsync(service);
 
 //Complex filtering with nested conditions
 Guid accountId = Guid.NewGuid(); // Replace with an actual account ID
@@ -66,7 +65,7 @@ var complexQueryWithFilterExpression = Query.For("contact")
         .OrderBy("lastname")
         .OrderBy("firstname");
 
-var contactResults = await complexQuery.RetrieveMultiple(service).ToListAsync();
+var contactResults = await complexQuery.RetrieveMultipleAsync(service);
 
 // Joining multiple entities with specific conditions and aliases
 var joiningQueryquery = Query.For("opportunity")
@@ -88,7 +87,7 @@ var joiningQueryquery = Query.For("opportunity")
             .As("contact");
     });
 
-var opportunityResults = await joiningQueryquery.RetrieveMultiple(service).ToListAsync();
+var opportunityResults = await joiningQueryquery.RetrieveMultipleAsync(service);
 
 
 // Get a specific page

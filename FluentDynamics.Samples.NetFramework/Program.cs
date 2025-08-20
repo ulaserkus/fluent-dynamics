@@ -4,13 +4,12 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Tooling.Connector;
 using System;
-using System.Threading.Tasks;
 
 namespace FluentDynamics.Samples.NetFramework
 {
     internal class Program
     {
-        async static Task Main(string[] args)
+        static void Main(string[] args)
         {
             string clientId = "<client-id>";
             string clientSecret = "<client-secret>";
@@ -37,7 +36,7 @@ namespace FluentDynamics.Samples.NetFramework
                  .OrderBy("name")
                  .Top(10);
 
-            var accountResults = await basicQuery.RetrieveMultiple(service).ToListAsync();
+            var accountResults = basicQuery.RetrieveMultiple(service);
 
             //Complex filtering with nested conditions
             Guid accountId = Guid.NewGuid(); // Replace with an actual account ID
@@ -94,7 +93,7 @@ namespace FluentDynamics.Samples.NetFramework
                         .As("contact");
                 });
 
-            var opportunityResults = await joiningQueryquery.RetrieveMultiple(service).ToListAsync();
+            var opportunityResults = joiningQueryquery.RetrieveMultiple(service);
 
 
             // Get a specific page
@@ -103,8 +102,8 @@ namespace FluentDynamics.Samples.NetFramework
             // Retrieve all pages automatically
             var allResults = basicQuery.RetrieveMultipleAllPages(service);
 
-            // Using async version
-            var results = await basicQuery.RetrieveMultipleAsync(service);
+            // Using sync version
+            var results = basicQuery.RetrieveMultiple(service);
 
 
             // Convert to list

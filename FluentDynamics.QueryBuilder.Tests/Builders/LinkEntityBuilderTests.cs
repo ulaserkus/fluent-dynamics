@@ -3,7 +3,7 @@ using Xunit;
 
 namespace FluentDynamics.QueryBuilder.Tests.Builders
 {
- 
+
     public class LinkEntityBuilderTests
     {
         #region Column Selection

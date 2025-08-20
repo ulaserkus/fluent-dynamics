@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xrm.Sdk.Query;
-using System.Linq;
 
 namespace FluentDynamics.QueryBuilder.Extensions
 {
