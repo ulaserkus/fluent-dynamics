@@ -68,7 +68,7 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
         [Fact]
         public void OrderBy_AddsOrder()
         {
-            var builder = Query.For("account").OrderBy("name");
+            var builder = Query.For("account").OrderByDesc("name");
             var query = builder.ToQueryExpression();
             Assert.Single(query.Orders);
             Assert.Equal("name", query.Orders[0].AttributeName);
@@ -159,7 +159,7 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
         {
             var builder = Query.For("account")
                                .OrderBy("name")
-                               .OrderBy("createdon");
+                               .OrderByDesc("createdon");
 
             var query = builder.ToQueryExpression();
             Assert.Equal(2, query.Orders.Count);

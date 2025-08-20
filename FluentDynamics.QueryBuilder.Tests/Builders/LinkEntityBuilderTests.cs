@@ -134,7 +134,7 @@ namespace FluentDynamics.QueryBuilder.Tests.Builders
             var link = Assert.Single(q.LinkEntities);
             var order = Assert.Single(link.Orders);
             Assert.Equal("firstname", order.AttributeName);
-            Assert.Equal(OrderType.Descending, order.OrderType);
+            Assert.Equal(OrderType.Ascending, order.OrderType);
         }
 
         [Fact]
