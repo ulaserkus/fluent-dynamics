@@ -122,4 +122,4 @@ CHANGELOG.md will be introduced with 1.1.0 (initial true async + helpers).
 
 ---
 
-Last Updated: (YYYY-MM-DD)
+Last Updated: (2025-08-20)
