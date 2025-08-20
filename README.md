@@ -21,6 +21,8 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 - 🛠 **FetchXML Conversion** - Convert queries to FetchXML easily
 - 🧮 **Distinct, NoLock, QueryHint, ForceSeek** - Advanced query options
 - ⚡ **FilterBuilder Extensions** - Syntactic sugar methods for common conditions (Equal, In, Like, LastXDays, IsNull, etc.)
+- 🔍 **Query Debugging** - Human-readable query inspection with DebugView
+- 🔄 **Optimized Cloning** - Efficient query cloning operations for different use cases
 
 ## Installation
 
@@ -178,7 +180,8 @@ Methods for configuring the main query:
 - `Select(params string[] attributes)` - Specifies columns to include
 - `SelectAll()` - Includes all columns
 - `Where(Action<FilterBuilder> filterConfig)` - Adds a filter group using fluent configuration
-- `OrderBy(attribute, [orderType])` - Adds a sort order
+- `OrderBy(attribute)` - Adds ascending a sort order
+- `OrderByDesc(attribute)` - Adds descending a sort order
 - `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)` - Adds a join
 - `Top(count)` - Limits the number of records
 - `Distinct()` - Returns only distinct records
@@ -190,9 +193,11 @@ Methods for configuring the main query:
 - `RetrieveMultiple(service)`
 - `RetrieveMultiple(service, pageNumber, pageSize)`
 - `RetrieveMultipleAllPages(service)`
+- `Exists(service)`
 - `RetrieveMultipleAsync(service, CancellationToken cancellationToken = default)`
 - `RetrieveMultipleAsync(service, pageNumber, pageSize, CancellationToken cancellationToken = default)`
 - `RetrieveMultipleAllPagesAsync(service, CancellationToken cancellationToken = default)`
+- `ExistsAsync(service, CancellationToken cancellationToken = default)`
 - `ToQueryExpression()`
 - `ToFetchExpression(service)`
 
@@ -256,7 +261,8 @@ Configures join/link entities:
 - `Select(params string[] attributes)`
 - `SelectAll()`
 - `As(alias)`
-- `OrderBy(attribute, [orderType])`
+- `OrderBy(attribute)`
+- `OrderByDesc(attribute)`
 - `Where(Action<FilterBuilder> filterConfig)`
 - `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)`
 
@@ -268,6 +274,9 @@ Configures join/link entities:
 - `Select(selector)`
 - `TryGet<T>(attributeName, defaultValue)`
 - `DeepClone()`
+- `ShallowClone()`
+- `CloneForPagination()`
+- `DebugView()`
 
 ---
 
