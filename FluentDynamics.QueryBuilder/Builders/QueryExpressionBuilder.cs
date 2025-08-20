@@ -1,5 +1,6 @@
 ﻿using FluentDynamics.QueryBuilder.Extensions;
 using Microsoft.Crm.Sdk.Messages;
+using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
@@ -217,11 +218,27 @@ namespace FluentDynamics.QueryBuilder.Builders
         }
 
         /// <summary>
+        /// Determines if any records match the query criteria
+        /// </summary>
+        /// <param name="service">The organization service</param>
+        /// <returns>Task returning true if any records match, otherwise false</returns>
+        public bool Exists(IOrganizationService service)
+        {
+            var existsQuery = _query.DeepClone();
+            existsQuery.ColumnSet = new ColumnSet(false);
+            existsQuery.TopCount = 1;
+
+            var result = service.RetrieveMultiple(existsQuery);
+            return result.Entities.Count > 0;
+        }
+
+        /// <summary>
         /// Asynchronously executes the query
         /// </summary>
         /// <param name="service">The organization service</param>
         /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
         /// <returns>Task returning collection of entities</returns>
+        [Obsolete("Use RetrieveMultipleAsync with IOrganizationServiceAsync2")]
         public Task<EntityCollection> RetrieveMultipleAsync(IOrganizationService service, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => RetrieveMultiple(service), cancellationToken);
@@ -235,6 +252,7 @@ namespace FluentDynamics.QueryBuilder.Builders
         /// <param name="pageSize">Number of records per page</param>
         /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
         /// <returns>Task returning collection of entities for the specified page</returns>
+        [Obsolete("Use RetrieveMultipleAsync with IOrganizationServiceAsync2")]
         public Task<EntityCollection> RetrieveMultipleAsync(IOrganizationService service, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => RetrieveMultiple(service, pageNumber, pageSize), cancellationToken);
@@ -246,10 +264,98 @@ namespace FluentDynamics.QueryBuilder.Builders
         /// <param name="service">The organization service</param>
         /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
         /// <returns>Task returning collection of all entities from all pages</returns>
+        [Obsolete("Use RetrieveMultipleAsync with IOrganizationServiceAsync2")]
         public Task<EntityCollection> RetrieveMultipleAllPagesAsync(IOrganizationService service, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => RetrieveMultipleAllPages(service), cancellationToken);
         }
+
+        /// <summary>
+        /// Asynchronously executes the query using true async operations
+        /// </summary>
+        /// <param name="service">The async organization service</param>
+        /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
+        /// <returns>Task returning collection of entities</returns>
+        public async Task<EntityCollection> RetrieveMultipleAsync(IOrganizationServiceAsync2 service, CancellationToken cancellationToken = default)
+        {
+            return await service.RetrieveMultipleAsync(_query, cancellationToken);
+        }
+
+        /// <summary>
+        /// Asynchronously executes the query with pagination using true async operations
+        /// </summary>
+        /// <param name="service">The async organization service</param>
+        /// <param name="pageNumber">The page number to retrieve</param>
+        /// <param name="pageSize">Number of records per page</param>
+        /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
+        /// <returns>Task returning collection of entities for the specified page</returns>
+        public async Task<EntityCollection> RetrieveMultipleAsync(IOrganizationServiceAsync2 service, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
+        {
+            var query = _query.DeepClone();
+            query.PageInfo = new PagingInfo
+            {
+                PageNumber = pageNumber,
+                Count = pageSize
+            };
+            return await service.RetrieveMultipleAsync(query, cancellationToken);
+        }
+
+        /// <summary>
+        /// Asynchronously executes the query and retrieves all pages of results using true async operations
+        /// </summary>
+        /// <param name="service">The async organization service</param>
+        /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
+        /// <returns>Task returning collection of all entities from all pages</returns>
+        public async Task<EntityCollection> RetrieveMultipleAllPagesAsync(IOrganizationServiceAsync2 service, CancellationToken cancellationToken = default)
+        {
+            var allResults = new EntityCollection();
+            int pageNumber = 1;
+            int pageSize = 5000;
+            string pagingCookie = null;
+            bool moreRecords;
+            var query = _query.DeepClone();
+
+            do
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                query.PageInfo = new PagingInfo
+                {
+                    PageNumber = pageNumber,
+                    Count = pageSize,
+                    PagingCookie = pagingCookie
+                };
+
+                var results = await service.RetrieveMultipleAsync(query, cancellationToken);
+
+                if (results.Entities.Count > 0)
+                    allResults.Entities.AddRange(results.Entities);
+
+                pagingCookie = results.PagingCookie;
+                moreRecords = results.MoreRecords;
+                pageNumber++;
+
+            } while (moreRecords);
+
+            return allResults;
+        }
+
+        /// <summary>
+        /// Asynchronously determines if any records match the query criteria
+        /// </summary>
+        /// <param name="service">The async organization service</param>
+        /// <param name="cancellationToken">Cancellation token to cancel the operation</param>
+        /// <returns>Task returning true if any records match, otherwise false</returns>
+        public async Task<bool> ExistsAsync(IOrganizationServiceAsync2 service, CancellationToken cancellationToken = default)
+        {
+            var existsQuery = _query.DeepClone();
+            existsQuery.ColumnSet = new ColumnSet(false);
+            existsQuery.TopCount = 1;
+
+            var result = await service.RetrieveMultipleAsync(existsQuery, cancellationToken);
+            return result.Entities.Count > 0;
+        }
+
 
         /// <summary>
         /// Converts to the underlying QueryExpression
