@@ -206,14 +206,14 @@ namespace FluentDynamics.Samples.NetFramework
             var query = Query.For("opportunity")
                 .Select("name", "estimatedvalue", "closeprobability")
                 .Where(f => f.Equal("statecode", 0))
-                .Link("account", "customerid", "accountid", JoinOperator.Inner, link =>
+                .Inner("account", "customerid", "accountid", link =>
                 {
                     // Inner join to account table
                     link.Select("name", "accountnumber")
                         .As("account")  // Returns column names with account_ prefix
                         .Where(f => f.Equal("statecode", 0));
                 })
-                .Link("contact", "customerid", "contactid", JoinOperator.LeftOuter, link =>
+                .LeftOuter("contact", "customerid", "contactid", link =>
                 {
                     // Left outer join to contact table (optional)
                     link.Select("fullname", "emailaddress1")

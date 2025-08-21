@@ -13,6 +13,117 @@ namespace FluentDynamics.QueryBuilder.Extensions
     public static class QueryBuilderExtensions
     {
         /// <summary>
+        /// Creates a link entity with an Inner join and applies the provided configuration action.
+        /// </summary>
+        public static QueryExpressionBuilder Inner(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.Inner, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with a LeftOuter join and applies the provided configuration action.
+        /// </summary>
+        public static QueryExpressionBuilder LeftOuter(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.LeftOuter, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with a Natural join and applies the provided configuration action.
+        /// </summary>
+        public static QueryExpressionBuilder Natural(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.Natural, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with a MatchFirstRowUsingCrossApply join for better performance when only one matching row is needed.
+        /// </summary>
+        public static QueryExpressionBuilder MatchFirstRowUsingCrossApply(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.MatchFirstRowUsingCrossApply, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with an In join that can provide performance benefits using IN condition in WHERE clause.
+        /// </summary>
+        public static QueryExpressionBuilder In(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.In, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with an Exists join that can provide performance benefits using EXISTS condition in WHERE clause.
+        /// </summary>
+        public static QueryExpressionBuilder Exists(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.Exists, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with an Any join that restricts results to parent rows with any matching rows in the related table.
+        /// </summary>
+        public static QueryExpressionBuilder Any(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.Any, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with a NotAny join that restricts results to parent rows with no matching rows in the related table.
+        /// </summary>
+        public static QueryExpressionBuilder NotAny(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.NotAny, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with an All join that filters records where rows with matching attribute values exist,
+        /// but none of those matching rows satisfy the additional filters defined.
+        /// </summary>
+        public static QueryExpressionBuilder All(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.All, linkBuilder);
+        }
+
+        /// <summary>
+        /// Creates a link entity with a NotAll join, which despite the name, is equivalent to Any join operation.
+        /// </summary>
+        public static QueryExpressionBuilder NotAll(this QueryExpressionBuilder builder, string toEntity,
+            string fromAttribute,
+            string toAttribute,
+            Action<LinkEntityBuilder> linkBuilder)
+        {
+            return builder.Link(toEntity, fromAttribute, toAttribute, JoinOperator.NotAll, linkBuilder);
+        }
+
+        /// <summary>
         /// Creates a deep clone of a query builder instance
         /// </summary>
         /// <param name="builder">The query builder to clone</param>
