@@ -5,7 +5,7 @@
 		<LangVersion>8.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<PackageId>FluentDynamics.QueryBuilder</PackageId>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<Authors>ulaserkus</Authors>
 		<Company></Company>
 		<Description>A fluent API for building Microsoft Dynamics 365/Dataverse queries with a clean, chainable syntax.</Description>
