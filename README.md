@@ -452,5 +452,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
-
-_Not: İstediğin gelişmiş join açıklamaları README'ye eklendi. Başka Türkçe açıklama veya ek örnek istersen haber ver._ 
