@@ -16,7 +16,7 @@ FluentDynamics QueryBuilder is a fluent, chainable API for building and executin
 - 🚀 **Async Support** - Full support for async/await patterns
 - 📊 **LINQ-like Operations** - Familiar extension methods for query results
 - 📑 **Pagination** - Built-in support for handling paged results
-- 🔗 **Complex Joins** - Easily create and configure link-entity operations
+- 🔗 **Complex & Advanced Joins** - Rich set of join helpers (Inner, LeftOuter, Natural, CrossApply, In, Exists, Any/NotAny, All/NotAll)
 - 🧩 **Extensible** - Clean architecture for extending functionality
 - 🛠 **FetchXML Conversion** - Convert queries to FetchXML easily
 - 🧮 **Distinct, NoLock, QueryHint, ForceSeek** - Advanced query options
@@ -123,7 +123,138 @@ var query = Query.For("opportunity")
     });
 ```
 
-### Pagination & Async
+---
+
+## Advanced Join Extensions
+
+The library exposes helper extension methods (in `QueryBuilderExtensions`) for additional Dataverse `JoinOperator` values. These allow more expressive and often more performant queries in certain scenarios.
+
+| Extension Method | Underlying JoinOperator | Purpose / Behavior |
+|------------------|-------------------------|--------------------|
+| `InnerJoin` | `Inner` | Standard inner join (matching related rows only) |
+| `LeftOuterJoin` | `LeftOuter` | Include parent even if no related rows exist |
+| `NaturalJoin` | `Natural` | Natural join (rarely used; relies on platform semantics) |
+| `CrossApplyJoin` | `MatchFirstRowUsingCrossApply` | Optimizes when you only need the first matching child row |
+| `InJoin` | `In` | Translates to `IN` semantics; can improve performance on large link sets |
+| `ExistsJoin` | `Exists` | Uses `EXISTS` logic to restrict parents to those having matches |
+| `AnyJoin` | `Any` | Parent rows where any related rows (after link filters) exist |
+| `NotAnyJoin` | `NotAny` | Parent rows where no related rows (after link filters) exist |
+| `AllJoin` | `All` | Parents with related rows where none of those rows satisfy additional filters (logical “ALL NOT”) |
+| `NotAllJoin` | `NotAll` | Alias of `Any` semantics (Dataverse quirk) |
+
+> Note: Some of these operators can significantly change the result semantics and/or execution plan. Always validate with real data and inspect the generated FetchXML (via `ToFetchExpression`) or use `DebugView()` for clarity.
+
+### When to Use Which Advanced Join
+
+- Use `CrossApplyJoin` to fetch a single "primary" child row (e.g., latest activity) without bringing an entire child set.
+- Use `ExistsJoin` / `AnyJoin` when you want to check for the presence of related rows without needing their data.
+- Use `NotAnyJoin` to enforce absence of related data (e.g. accounts without open opportunities).
+- Use `InJoin` when a sub-select style inclusion might be faster than a traditional join (test vs inner join).
+- Use `AllJoin` when you need parent rows where all related rows fail a condition expressed in the filters (Dataverse implements this as “all related but none meet filter X”).
+
+### Code Examples
+
+#### 1. Any vs NotAny (Presence / Absence)
+
+```csharp
+// Accounts that HAVE at least one active contact
+var accountsWithActiveContact = Query.For("account")
+    .AnyJoin("contact", "accountid", "parentcustomerid", link => link
+        .Where(f => f.Equal("statecode", 0))
+    );
+
+// Accounts that have NO active contact
+var accountsWithoutActiveContact = Query.For("account")
+    .NotAnyJoin("contact", "accountid", "parentcustomerid", link => link
+        .Where(f => f.Equal("statecode", 0))
+    );
+```
+
+#### 2. Exists vs In
+
+```csharp
+// Accounts that have at least one open opportunity (using EXISTS)
+var accountsWithOpportunitiesExists = Query.For("account")
+    .ExistsJoin("opportunity", "accountid", "parentaccountid", link => link
+        .Where(f => f.Equal("statecode", 0))
+    );
+
+// Accounts using IN-based restriction (platform may choose different plan)
+var accountsWithOpportunitiesIn = Query.For("account")
+    .InJoin("opportunity", "accountid", "parentaccountid", link => link
+        .Where(f => f.Equal("statecode", 0))
+    );
+```
+
+#### 3. CrossApply (First Matching Child)
+
+```csharp
+// Get account with only ONE (first) recent task (improves performance vs full child set)
+var accountsWithOneTask = Query.For("account")
+    .CrossApplyJoin("task", "accountid", "regardingobjectid", link => link
+        .Select("subject", "scheduledend")
+        .OrderByDesc("scheduledend")  // Ensure desired ordering for "first"
+        .Top(1) // (Optional) If you later add Top to the link (manual pattern)
+    );
+```
+
+> Dataverse’s cross-apply logic tries to retrieve just the first qualifying child row; ensure your sorting reflects the intended “first”.
+
+#### 4. All / NotAll Semantics
+
+```csharp
+// Accounts where related opportunities exist, but NONE of those are still open
+var accountsWhereAllOpportunitiesClosed = Query.For("account")
+    .AllJoin("opportunity", "accountid", "parentaccountid", link => link
+        .Where(f => f.Equal("statecode", 0)) // Filter defines "open" – ALL join returns parents where no linked rows satisfy this
+    );
+
+// NotAll is effectively Any (platform quirk)
+var accountsWithAnyOpenOpportunity = Query.For("account")
+    .NotAllJoin("opportunity", "accountid", "parentaccountid", link => link
+        .Where(f => f.Equal("statecode", 0))
+    );
+```
+
+#### 5. Combining Multiple Advanced Joins
+
+```csharp
+var complex = Query.For("account")
+    .Select("name")
+    .AnyJoin("contact", "accountid", "parentcustomerid", c => c
+        .Where(f => f.Equal("statecode", 0))
+        .Select("fullname")
+    )
+    .NotAnyJoin("opportunity", "accountid", "parentaccountid", o => o
+        .Where(f => f.Equal("statecode", 0)) // Has no active opportunities
+    )
+    .CrossApplyJoin("task", "accountid", "regardingobjectid", t => t
+        .Select("subject")
+        .OrderByDesc("createdon")
+    );
+```
+
+### Performance Tips
+
+| Scenario | Recommended Join Helper | Rationale |
+|----------|-------------------------|-----------|
+| Need only first child row | `CrossApplyJoin` | Avoids pulling all children |
+| Presence check only | `ExistsJoin` or `AnyJoin` | Clear semantic & often cheaper |
+| Absence check | `NotAnyJoin` | Efficient anti-semi logic |
+| None of children meet condition | `AllJoin` | Expresses universal negative |
+| Explore optimizer difference | Compare `InnerJoin` vs `InJoin` | Sometimes IN variant changes plan |
+| Filtering parent by complex related predicate | `ExistsJoin` | Moves predicate to EXISTS scope |
+
+Use `DebugView()` during development:
+
+```csharp
+var debug = complex.DebugView();
+Console.WriteLine(debug);
+```
+
+---
+
+## Pagination & Async
 
 ```csharp
 // Get a specific page
@@ -142,14 +273,14 @@ var pageResults = await query.RetrieveMultipleAsync(service, pageNumber: 2, page
 var allAsyncResults = await query.RetrieveMultipleAllPagesAsync(service);
 ```
 
-### FetchXML Conversion
+## FetchXML Conversion
 
 ```csharp
 // Convert QueryExpression to FetchXML
 var fetchXml = query.ToFetchExpression(service);
 ```
 
-### Working with Results
+## Working with Results
 
 ```csharp
 // Convert to list
@@ -266,6 +397,18 @@ Configures join/link entities:
 - `Where(Action<FilterBuilder> filterConfig)`
 - `Link(toEntity, fromAttribute, toAttribute, joinType, Action<LinkEntityBuilder> linkBuilder)`
 
+### Advanced Join Helpers (QueryBuilderExtensions)
+- `InnerJoin(...)`
+- `LeftOuterJoin(...)`
+- `NaturalJoin(...)`
+- `CrossApplyJoin(...)`
+- `InJoin(...)`
+- `ExistsJoin(...)`
+- `AnyJoin(...)`
+- `NotAnyJoin(...)`
+- `AllJoin(...)`
+- `NotAllJoin(...)`
+
 ### Extension Methods (LINQ-like)
 - `ToList()` / `ToArray()`
 - `FirstOrDefault(predicate)`
@@ -307,3 +450,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+_Not: İstediğin gelişmiş join açıklamaları README'ye eklendi. Başka Türkçe açıklama veya ek örnek istersen haber ver._ 
